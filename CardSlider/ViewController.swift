@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class ViewController: UIViewController {
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
@@ -15,13 +15,14 @@ class ViewController: UIViewController {
     /// The emojis on the sides are simply part of a view that sits ontop of everything else,
     /// but this overlay view is non-interactive so any touch events are passed on to the next receivers.
     var emojiOptionsOverlay: EmojiOptionsOverlay!
-    var totalCards = 4
+    var total_Cards = 4
     var cardEmojis = Array(repeating: 0, count: 4)
     var ref: DatabaseReference!
+    var username = "anon"
+    var userInfo = []
+    
     
     override func viewDidLoad() {
-        ref = Database.database().reference()
-        console.log(ref)
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
@@ -65,7 +66,17 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
         
         // backend stuff todo
+        ref = Database.database().reference()
+        let name = "anon"
+        let img = "img"
 
+        ref.child("profile").child(name).setValue([
+            "res0": cardEmojis[0],
+            "res1": cardEmojis[1],
+            "res2": cardEmojis[2],
+            "res3": cardEmojis[3],
+            "img": img
+        ]);
     
     }
 
@@ -208,7 +219,7 @@ class ViewController: UIViewController {
                 if cards[0].center.y < (self.view.center.y - optionLength) {
                     cards[0].showOptionLabel(option: .like1)
                     emojiOptionsOverlay.showEmoji(for: .like1)
-                    cardEmojis[cards.count-1] = 5
+                    cardEmojis[total_Cards - cards.count] = 5
                     if cards[0].center.y < (self.view.center.y - optionLength - optionLength) {
                         emojiOptionsOverlay.updateHeartEmoji(isFilled: true, isFocused: true)
                     } else {
@@ -216,12 +227,12 @@ class ViewController: UIViewController {
                     }
                     
                 } else if cards[0].center.y > (self.view.center.y + optionLength) {
-                    cardEmojis[cards.count-1] = 3
+                    cardEmojis[total_Cards - cards.count] = 3
                     cards[0].showOptionLabel(option: .like3)
                     emojiOptionsOverlay.showEmoji(for: .like3)
                     emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 } else {
-                    cardEmojis[cards.count-1] = 4
+                    cardEmojis[total_Cards - cards.count] = 4
                     cards[0].showOptionLabel(option: .like2)
                     emojiOptionsOverlay.showEmoji(for: .like2)
                     emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
@@ -231,15 +242,15 @@ class ViewController: UIViewController {
                 emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 
                 if cards[0].center.y < (self.view.center.y - optionLength) {
-                    cardEmojis[cards.count-1] = 2
+                    cardEmojis[total_Cards - cards.count] = 2
                     cards[0].showOptionLabel(option: .dislike1)
                     emojiOptionsOverlay.showEmoji(for: .dislike1)
                 } else if cards[0].center.y > (self.view.center.y + optionLength) {
-                    cardEmojis[cards.count-1] = 0
+                    cardEmojis[total_Cards - cards.count] = 0
                     cards[0].showOptionLabel(option: .dislike3)
                     emojiOptionsOverlay.showEmoji(for: .dislike3)
                 } else {
-                    cardEmojis[cards.count-1] = 1
+                    cardEmojis[total_Cards - cards.count] = 1
                     cards[0].showOptionLabel(option: .dislike2)
                     emojiOptionsOverlay.showEmoji(for: .dislike2)
                 }
@@ -356,6 +367,18 @@ extension ViewController {
     
     /// UI
     func setUpDummyUI() {
+        
+        let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
+        button.backgroundColor = .green
+        button.setTitle("Test Button", for: .normal)
+        //button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        
+        self.view.addSubview(button)
+    }
+    
+    func setUpCardsUI() {
+        
+        
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
         menuIconImageView.contentMode = .scaleAspectFit
