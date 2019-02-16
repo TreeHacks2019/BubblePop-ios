@@ -316,7 +316,7 @@ extension ViewController {
         }
     }
     
-    /// Dummy UI
+    /// UI
     func setUpDummyUI() {
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
@@ -327,7 +327,7 @@ extension ViewController {
         
         // title label
         let titleLabel = UILabel()
-        titleLabel.text = "How do you like\nthis one?"
+        titleLabel.text = "What is your \nopinion?"
         titleLabel.numberOfLines = 2
         titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 19)
         titleLabel.textColor = UIColor(red: 83/255, green: 98/255, blue: 196/255, alpha: 1.0)
@@ -337,7 +337,7 @@ extension ViewController {
         
         // REACT
         let reactLabel = UILabel()
-        reactLabel.text = "REACT"
+        reactLabel.text = "DECIDE"
         reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
         reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
         reactLabel.textAlignment = .center
