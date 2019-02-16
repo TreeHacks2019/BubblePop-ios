@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     var cardEmojis = Array(repeating: 0, count: 4)
     var ref: DatabaseReference!
     var username = "anon"
-    var userInfo = []
     
     
     override func viewDidLoad() {
@@ -27,11 +26,18 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpDummyUI()
+    }
+    
+    func loadCards(){
+        for view in view.subviews {
+            view.removeFromSuperview()
+        }
         
         // 1. create a deck of cards
         // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
         // of course, you could always add new cards to self.cards and call layoutCards() again
-        for x in 1...totalCards {
+        setUpCardsUI()
+        for x in 1...total_Cards {
             let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), num: x)
             cards.append(card)
         }
@@ -367,18 +373,20 @@ extension ViewController {
     
     /// UI
     func setUpDummyUI() {
-        
-        let button = UIButton(frame: CGRect(x: 100, y: 100, width: 100, height: 50))
-        button.backgroundColor = .green
-        button.setTitle("Test Button", for: .normal)
-        //button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        
+        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2, width: 100, height: 50))
+        button.backgroundColor = .cyan
+        button.setTitle("Go", for: .normal)
+        button.addTarget(self, action: #selector(loadCards), for: .touchUpInside)
+        button.layer.cornerRadius = 10
         self.view.addSubview(button)
+        
+        let textField = UITextField()
+        textField.borderStyle = .roundedRect
+        textField.text = "Fill me in"
+        self.view.addSubview(textField)
     }
     
     func setUpCardsUI() {
-        
-        
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
         menuIconImageView.contentMode = .scaleAspectFit
