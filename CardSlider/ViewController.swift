@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class ViewController: UIViewController {
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
