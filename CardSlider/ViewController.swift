@@ -337,7 +337,7 @@ extension ViewController {
         
         // REACT
         let reactLabel = UILabel()
-        reactLabel.text = "DECIDE"
+        reactLabel.text = "REACT"
         reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
         reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
         reactLabel.textAlignment = .center

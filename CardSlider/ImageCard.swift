@@ -24,8 +24,10 @@ class ImageCard: CardView {
         
         // dummy text boxes
         
+     
+        
         let textBox1 = UIView()
-        textBox1.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        textBox1.backgroundColor = UIColor(red: 230/255, green: 190/255, blue: 230/255, alpha: 1.0)
         textBox1.layer.cornerRadius = 12
         textBox1.layer.masksToBounds = true
         
@@ -33,7 +35,7 @@ class ImageCard: CardView {
         self.addSubview(textBox1)
         
         let textBox2 = UIView()
-        textBox2.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        textBox2.backgroundColor = UIColor(red: 230/255, green: 190/255, blue: 230/255, alpha: 1.0)
         textBox2.layer.cornerRadius = 12
         textBox2.layer.masksToBounds = true
         
