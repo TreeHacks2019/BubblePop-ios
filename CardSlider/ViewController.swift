@@ -54,6 +54,11 @@ class ViewController: UIViewController {
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
     
+    // check if has all opinions
+    func hasAllOpinions(profile: [String: AnyObject]) -> Bool {
+        return profile["res0"] != nil && profile["res1"] != nil && profile["res2"] != nil && profile["res3"] != nil
+    }
+    
     /// match etc
     // consider refactoring
     func decided() {
@@ -84,6 +89,35 @@ class ViewController: UIViewController {
             "img": img
         ]);
     
+        // backend stuff todo
+        print("finding match")
+        ref.observe(DataEventType.value, with: { (snapshot) in
+            let postDict = snapshot.value as? [String : NSDictionary] ?? [:]
+            let users = postDict["profile"] as? [String : AnyObject] ?? [:]
+            print(users)
+            
+            // 2 users only
+            if (users["Jennie"] != nil && self.hasAllOpinions(profile: users["Jennie"] as! [String: AnyObject]) &&
+                users["Will"] != nil && self.hasAllOpinions(profile: users["Will"] as! [String: AnyObject])) {
+                print("found match")
+                for view in self.view.subviews {
+                    view.removeFromSuperview()
+                }
+                //make new label
+                let foundLabel = UILabel()
+                foundLabel.text = "Found match!"
+                foundLabel.numberOfLines = 3
+                foundLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 40)
+                foundLabel.textColor = UIColor(red: 250/255, green: 220/255, blue: 250/255, alpha: 1.0)
+                foundLabel.textAlignment = .center
+                foundLabel.frame = CGRect(x: (self.view.frame.width / 2) - 190, y: (self.view.frame.height / 2)-100, width: 400, height: 200)
+                self.view.addSubview(foundLabel)
+                self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
+                //
+            } else {
+                print("not finding match yet")
+            }
+        })
     }
 
     
