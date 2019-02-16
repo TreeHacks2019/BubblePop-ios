@@ -34,9 +34,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate {
         // Set the scene to the view
         sceneView.scene = scene
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
-            self.performSegue(withIdentifier: "testSegue", sender: self)
-        })
     }
     
     override func viewWillAppear(_ animated: Bool) {

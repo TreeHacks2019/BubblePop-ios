@@ -112,6 +112,9 @@ class ViewController: UIViewController {
                 self.view.addSubview(foundLabel)
                 self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
                 //
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                    self.performSegue(withIdentifier: "firstSegue", sender: self)
+                })
             } else {
                 print("not finding match yet")
             }
