@@ -79,20 +79,12 @@ class ViewController: UIViewController {
         
         // backend stuff todo
         ref = Database.database().reference()
-
-        ref.child("profile").child(username).setValue([
-            "res0": cardEmojis[0],
-            "res1": cardEmojis[1],
-            "res2": cardEmojis[2],
-            "res3": cardEmojis[3],
-        ]);
     
         // backend stuff todo
         print("finding match")
         ref.observe(DataEventType.value, with: { (snapshot) in
             let postDict = snapshot.value as? [String : NSDictionary] ?? [:]
             let users = postDict["profile"] as? [String : AnyObject] ?? [:]
-            print(users)
             
             // 2 users only
             if (users["Jennie"] != nil && self.hasAllOpinions(profile: users["Jennie"] as! [String: AnyObject]) &&
@@ -160,7 +152,11 @@ class ViewController: UIViewController {
     /// This is called whenever the front card is swiped off the screen or is animating away from its initial position.
     /// showNextCard() just adds the next card to the 4 visible cards and animates each card to move forward.
     func showNextCard() {
-        
+        // backend stuff todo
+        ref = Database.database().reference()
+        let num = total_Cards - cards.count
+        ref.child("profile").child(username).child("res\(num)").setValue(cardEmojis[num]);
+
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
         for i in 1...3 {

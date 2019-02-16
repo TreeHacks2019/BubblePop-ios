@@ -111,7 +111,7 @@ class CardView: UIView {
             })
         }
         // fade out redLabel
-        if !redLabel.isHidden {
+        if !redLabel.isHidden { 
             if isHidingOptionLabel { return }
             isHidingOptionLabel = true
             UIView.animate(withDuration: 0.15, animations: {
