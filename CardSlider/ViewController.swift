@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ViewController: UIViewController {
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
@@ -16,8 +17,11 @@ class ViewController: UIViewController {
     var emojiOptionsOverlay: EmojiOptionsOverlay!
     var totalCards = 4
     var cardEmojis = Array(repeating: 0, count: 4)
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
+        ref = Database.database().reference()
+        console.log(ref)
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
