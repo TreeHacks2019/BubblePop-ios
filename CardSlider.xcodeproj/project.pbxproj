@@ -14,6 +14,8 @@
 		100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */; };
 		100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB21E64CA2800486D7C /* ImageCard.swift */; };
 		100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB31E64CA2800486D7C /* ViewController.swift */; };
+		50945948E61E1C93388EF8DF /* libPods-CardSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 429358A8D191600C24A8631B /* libPods-CardSlider.a */; };
+		EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB3639422186F2F00645F69 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
 		100D4DB21E64CA2800486D7C /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		100D4DB31E64CA2800486D7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.debug.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.debug.xcconfig"; sourceTree = "<group>"; };
+		429358A8D191600C24A8631B /* libPods-CardSlider.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardSlider.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.release.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.release.xcconfig"; sourceTree = "<group>"; };
+		EAB3639422186F2F00645F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50945948E61E1C93388EF8DF /* libPods-CardSlider.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +51,8 @@
 			children = (
 				100D4D9A1E64C99D00486D7C /* CardSlider */,
 				100D4D991E64C99D00486D7C /* Products */,
+				838EFED101C98F58F6CA4CE8 /* Pods */,
+				7FACB8F350F4617DD8988612 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +67,7 @@
 		100D4D9A1E64C99D00486D7C /* CardSlider */ = {
 			isa = PBXGroup;
 			children = (
+				EAB3639422186F2F00645F69 /* GoogleService-Info.plist */,
 				100D4DAF1E64CA2800486D7C /* AppDelegate.swift */,
 				100D4DB31E64CA2800486D7C /* ViewController.swift */,
 				100D4DB21E64CA2800486D7C /* ImageCard.swift */,
@@ -70,6 +80,23 @@
 			path = CardSlider;
 			sourceTree = "<group>";
 		};
+		7FACB8F350F4617DD8988612 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				429358A8D191600C24A8631B /* libPods-CardSlider.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		838EFED101C98F58F6CA4CE8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */,
+				D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -77,6 +104,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 100D4DAA1E64C99D00486D7C /* Build configuration list for PBXNativeTarget "CardSlider" */;
 			buildPhases = (
+				45F5FCFEFC4C1F839278A527 /* [CP] Check Pods Manifest.lock */,
 				100D4D941E64C99D00486D7C /* Sources */,
 				100D4D951E64C99D00486D7C /* Frameworks */,
 				100D4D961E64C99D00486D7C /* Resources */,
@@ -133,10 +161,32 @@
 			files = (
 				100D4DAE1E64CA0900486D7C /* Assets.xcassets in Resources */,
 				100D4DA61E64C99D00486D7C /* LaunchScreen.storyboard in Resources */,
+				EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45F5FCFEFC4C1F839278A527 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CardSlider-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		100D4D941E64C99D00486D7C /* Sources */ = {
@@ -276,6 +326,7 @@
 		};
 		100D4DAB1E64C99D00486D7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -292,6 +343,7 @@
 		};
 		100D4DAC1E64C99D00486D7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

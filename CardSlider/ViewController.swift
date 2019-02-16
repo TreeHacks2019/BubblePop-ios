@@ -9,12 +9,13 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
     var cards = [ImageCard]()
     /// The emojis on the sides are simply part of a view that sits ontop of everything else,
     /// but this overlay view is non-interactive so any touch events are passed on to the next receivers.
     var emojiOptionsOverlay: EmojiOptionsOverlay!
+    var totalCards = 4
+    var cardEmojis = Array(repeating: 0, count: 4)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
         // 1. create a deck of cards
         // 20 cards for demonstrational purposes - once the cards run out, just re-run the project to start over
         // of course, you could always add new cards to self.cards and call layoutCards() again
-        for x in 1...4 {
+        for x in 1...totalCards {
             let card = ImageCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6), num: x)
             cards.append(card)
         }
@@ -42,12 +43,12 @@ class ViewController: UIViewController {
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
     
-    /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
+    /// match etc
+    // consider refactoring
     func decided() {
         for view in view.subviews {
             view.removeFromSuperview()
         }
-        
         
         let doneLabel = UILabel()
         doneLabel.text = "Preparing\n A Match\n..."
@@ -59,9 +60,7 @@ class ViewController: UIViewController {
         self.view.addSubview(doneLabel)
         self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
         
-      
-
-        // backend stuff
+        // backend stuff todo
 
     
     }
@@ -78,7 +77,7 @@ class ViewController: UIViewController {
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleCardPan)))
         
         // the next 3 cards in the deck
-        for i in 1...3 {
+        for i in 1...4 {
             if i > (cards.count - 1) { continue }
             
             let card = cards[i]
@@ -174,6 +173,7 @@ class ViewController: UIViewController {
     func removeOldFrontCard() {
         cards[0].removeFromSuperview()
         cards.remove(at: 0)
+        print(cardEmojis)
     }
     
     /// UIKit dynamics variables that we need references to.
@@ -204,7 +204,7 @@ class ViewController: UIViewController {
                 if cards[0].center.y < (self.view.center.y - optionLength) {
                     cards[0].showOptionLabel(option: .like1)
                     emojiOptionsOverlay.showEmoji(for: .like1)
-                    
+                    cardEmojis[cards.count-1] = 5
                     if cards[0].center.y < (self.view.center.y - optionLength - optionLength) {
                         emojiOptionsOverlay.updateHeartEmoji(isFilled: true, isFocused: true)
                     } else {
@@ -212,10 +212,12 @@ class ViewController: UIViewController {
                     }
                     
                 } else if cards[0].center.y > (self.view.center.y + optionLength) {
+                    cardEmojis[cards.count-1] = 3
                     cards[0].showOptionLabel(option: .like3)
                     emojiOptionsOverlay.showEmoji(for: .like3)
                     emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 } else {
+                    cardEmojis[cards.count-1] = 4
                     cards[0].showOptionLabel(option: .like2)
                     emojiOptionsOverlay.showEmoji(for: .like2)
                     emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
@@ -225,12 +227,15 @@ class ViewController: UIViewController {
                 emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 
                 if cards[0].center.y < (self.view.center.y - optionLength) {
+                    cardEmojis[cards.count-1] = 2
                     cards[0].showOptionLabel(option: .dislike1)
                     emojiOptionsOverlay.showEmoji(for: .dislike1)
                 } else if cards[0].center.y > (self.view.center.y + optionLength) {
+                    cardEmojis[cards.count-1] = 0
                     cards[0].showOptionLabel(option: .dislike3)
                     emojiOptionsOverlay.showEmoji(for: .dislike3)
                 } else {
+                    cardEmojis[cards.count-1] = 1
                     cards[0].showOptionLabel(option: .dislike2)
                     emojiOptionsOverlay.showEmoji(for: .dislike2)
                 }
