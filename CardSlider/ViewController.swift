@@ -44,15 +44,23 @@ class ViewController: UIViewController {
     
     /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func decided() {
+        for view in view.subviews {
+            view.removeFromSuperview()
+        }
+        
+        
         let doneLabel = UILabel()
-        doneLabel.text = "Preparing\n a match"
-        doneLabel.numberOfLines = 2
+        doneLabel.text = "Preparing\n A Match\n..."
+        doneLabel.numberOfLines = 3
         doneLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 40)
-        doneLabel.textColor = UIColor(red: 150/255, green: 100/255, blue: 150/255, alpha: 1.0)
+        doneLabel.textColor = UIColor(red: 250/255, green: 220/255, blue: 250/255, alpha: 1.0)
         doneLabel.textAlignment = .center
         doneLabel.frame = CGRect(x: (self.view.frame.width / 2) - 190, y: (self.view.frame.height / 2)-100, width: 400, height: 200)
         self.view.addSubview(doneLabel)
+        self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
         
+      
+
         // backend stuff
 
     
@@ -358,7 +366,7 @@ extension ViewController {
         
         // REACT
         let reactLabel = UILabel()
-        reactLabel.text = "REACT"
+        reactLabel.text = "DECIDE"
         reactLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 28)
         reactLabel.textColor = UIColor(red: 54/255, green: 72/255, blue: 149/255, alpha: 1.0)
         reactLabel.textAlignment = .center
