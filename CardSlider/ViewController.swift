@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     }
     
     func loadCards(){
+        print(username)
         for view in view.subviews {
             view.removeFromSuperview()
         }
@@ -78,23 +79,12 @@ class ViewController: UIViewController {
         
         // backend stuff todo
         ref = Database.database().reference()
-        let name = "anon"
-        let img = "img"
-
-        ref.child("profile").child(name).setValue([
-            "res0": cardEmojis[0],
-            "res1": cardEmojis[1],
-            "res2": cardEmojis[2],
-            "res3": cardEmojis[3],
-            "img": img
-        ]);
     
         // backend stuff todo
         print("finding match")
         ref.observe(DataEventType.value, with: { (snapshot) in
             let postDict = snapshot.value as? [String : NSDictionary] ?? [:]
             let users = postDict["profile"] as? [String : AnyObject] ?? [:]
-            print(users)
             
             // 2 users only
             if (users["Jennie"] != nil && self.hasAllOpinions(profile: users["Jennie"] as! [String: AnyObject]) &&
@@ -119,8 +109,6 @@ class ViewController: UIViewController {
             }
         })
     }
-
-    
     
     /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
@@ -164,7 +152,11 @@ class ViewController: UIViewController {
     /// This is called whenever the front card is swiped off the screen or is animating away from its initial position.
     /// showNextCard() just adds the next card to the 4 visible cards and animates each card to move forward.
     func showNextCard() {
-        
+        // backend stuff todo
+        ref = Database.database().reference()
+        let num = total_Cards - cards.count
+        ref.child("profile").child(username).child("res\(num)").setValue(cardEmojis[num]);
+
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
         for i in 1...3 {
@@ -405,20 +397,28 @@ extension ViewController {
         }
     }
     
+    func changeUserName(textField: UITextField){
+        username = textField.text!
+    }
+
+    
     /// UI
     func setUpDummyUI() {
-        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2, width: 100, height: 50))
+        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 50, width: 100, height: 50))
         button.backgroundColor = .cyan
         button.setTitle("Go", for: .normal)
         button.addTarget(self, action: #selector(loadCards), for: .touchUpInside)
         button.layer.cornerRadius = 10
         self.view.addSubview(button)
         
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.text = "Fill me in"
-        self.view.addSubview(textField)
+        let myTextField = UITextField(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 - 50, width: 100, height: 50))
+
+        myTextField.borderStyle = .roundedRect
+        myTextField.text = username
+        self.view.addSubview(myTextField)
+        myTextField.addTarget(self,  action:#selector(changeUserName), for: .editingChanged)
     }
+    
     
     func setUpCardsUI() {
         // menu icon

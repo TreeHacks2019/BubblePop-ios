@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ImageCard: CardView {
 
@@ -22,9 +23,23 @@ class ImageCard: CardView {
         imageView.frame = CGRect(x: 12, y: 12, width: self.frame.width - 24, height: self.frame.height - 103)
         self.addSubview(imageView)
         
-        // dummy text boxes
-        
-     
+        let ref = Database.database().reference()
+        ref.child("Questions").observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? [String : String] ?? [:]
+            if (value["q\(num-1)"] != nil) {
+                let titleLabel = UILabel()
+                titleLabel.text = value["q\(num-1)"] as! String
+                titleLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+                titleLabel.numberOfLines = 100
+                titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 30)
+                titleLabel.textColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1.0)
+                titleLabel.textAlignment = .center
+                titleLabel.frame = CGRect(x: 40, y: imageView.frame.height/2 - 150, width:self.frame.width - 48, height: 300)
+                self.addSubview(titleLabel)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         let textBox1 = UIView()
         textBox1.backgroundColor = UIColor(red: 230/255, green: 190/255, blue: 230/255, alpha: 1.0)
