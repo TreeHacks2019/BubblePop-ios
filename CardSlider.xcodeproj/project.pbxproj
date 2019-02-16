@@ -15,6 +15,9 @@
 		100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB21E64CA2800486D7C /* ImageCard.swift */; };
 		100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB31E64CA2800486D7C /* ViewController.swift */; };
 		50945948E61E1C93388EF8DF /* libPods-CardSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 429358A8D191600C24A8631B /* libPods-CardSlider.a */; };
+		8D5B4358221890DA00F01C04 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B4357221890DA00F01C04 /* main.storyboard */; };
+		8D5B4379221892CE00F01C04 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B4378221892CE00F01C04 /* art.scnassets */; };
+		8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B437A2218940600F01C04 /* ARViewController.swift */; };
 		EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB3639422186F2F00645F69 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +33,9 @@
 		100D4DB31E64CA2800486D7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.debug.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.debug.xcconfig"; sourceTree = "<group>"; };
 		429358A8D191600C24A8631B /* libPods-CardSlider.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardSlider.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B4357221890DA00F01C04 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
+		8D5B4378221892CE00F01C04 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		8D5B437A2218940600F01C04 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
 		D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.release.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.release.xcconfig"; sourceTree = "<group>"; };
 		EAB3639422186F2F00645F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,12 +76,15 @@
 				EAB3639422186F2F00645F69 /* GoogleService-Info.plist */,
 				100D4DAF1E64CA2800486D7C /* AppDelegate.swift */,
 				100D4DB31E64CA2800486D7C /* ViewController.swift */,
+				8D5B4357221890DA00F01C04 /* main.storyboard */,
 				100D4DB21E64CA2800486D7C /* ImageCard.swift */,
 				100D4DB01E64CA2800486D7C /* CardView.swift */,
 				100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */,
 				100D4DAD1E64CA0900486D7C /* Assets.xcassets */,
 				100D4DA41E64C99D00486D7C /* LaunchScreen.storyboard */,
 				100D4DA71E64C99D00486D7C /* Info.plist */,
+				8D5B4378221892CE00F01C04 /* art.scnassets */,
+				8D5B437A2218940600F01C04 /* ARViewController.swift */,
 			);
 			path = CardSlider;
 			sourceTree = "<group>";
@@ -161,7 +170,9 @@
 			files = (
 				100D4DAE1E64CA0900486D7C /* Assets.xcassets in Resources */,
 				100D4DA61E64C99D00486D7C /* LaunchScreen.storyboard in Resources */,
+				8D5B4379221892CE00F01C04 /* art.scnassets in Resources */,
 				EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */,
+				8D5B4358221890DA00F01C04 /* main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +207,7 @@
 				100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */,
 				100D4DB51E64CA2800486D7C /* CardView.swift in Sources */,
 				100D4DB41E64CA2800486D7C /* AppDelegate.swift in Sources */,
+				8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */,
 				100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */,
 				100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */,
 			);
@@ -332,7 +344,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 7X43M2UT9A;
 				INFOPLIST_FILE = CardSlider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -349,7 +361,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 7X43M2UT9A;
 				INFOPLIST_FILE = CardSlider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
