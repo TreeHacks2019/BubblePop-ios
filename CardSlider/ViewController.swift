@@ -43,6 +43,24 @@ class ViewController: UIViewController {
     let cardInteritemSpacing: CGFloat = 15
     
     /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
+    func decided() {
+        let doneLabel = UILabel()
+        doneLabel.text = "Preparing\n a match"
+        doneLabel.numberOfLines = 2
+        doneLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 40)
+        doneLabel.textColor = UIColor(red: 150/255, green: 100/255, blue: 150/255, alpha: 1.0)
+        doneLabel.textAlignment = .center
+        doneLabel.frame = CGRect(x: (self.view.frame.width / 2) - 190, y: (self.view.frame.height / 2)-100, width: 400, height: 200)
+        self.view.addSubview(doneLabel)
+        
+        // backend stuff
+
+    
+    }
+
+    
+    
+    /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
         // frontmost card (first card of the deck)
         let firstCard = cards[0]
@@ -84,6 +102,7 @@ class ViewController: UIViewController {
     /// This is called whenever the front card is swiped off the screen or is animating away from its initial position.
     /// showNextCard() just adds the next card to the 4 visible cards and animates each card to move forward.
     func showNextCard() {
+        
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
         for i in 1...3 {
@@ -113,6 +132,7 @@ class ViewController: UIViewController {
             if cards.count != 1 {
                 self.view.bringSubview(toFront: cards[1])
             }
+            if cards.count == 1 { decided() }
             return
         }
         let newCard = cards[4]
@@ -139,6 +159,7 @@ class ViewController: UIViewController {
         // first card needs to be in the front for proper interactivity
         self.view.bringSubview(toFront: self.cards[1])
         
+        if cards.count == 1 { decided() }
     }
     
     /// Whenever the front card is off the screen, this method is called in order to remove the card from our data structure and from the view.
