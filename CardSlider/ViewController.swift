@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     }
     
     func loadCards(){
+        print(username)
         for view in view.subviews {
             view.removeFromSuperview()
         }
@@ -73,20 +74,15 @@ class ViewController: UIViewController {
         
         // backend stuff todo
         ref = Database.database().reference()
-        let name = "anon"
-        let img = "img"
 
-        ref.child("profile").child(name).setValue([
+        ref.child("profile").child(username).setValue([
             "res0": cardEmojis[0],
             "res1": cardEmojis[1],
             "res2": cardEmojis[2],
             "res3": cardEmojis[3],
-            "img": img
         ]);
     
     }
-
-    
     
     /// Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
@@ -371,20 +367,28 @@ extension ViewController {
         }
     }
     
+    func changeUserName(textField: UITextField){
+        username = textField.text!
+    }
+
+    
     /// UI
     func setUpDummyUI() {
-        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2, width: 100, height: 50))
+        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 50, width: 100, height: 50))
         button.backgroundColor = .cyan
         button.setTitle("Go", for: .normal)
         button.addTarget(self, action: #selector(loadCards), for: .touchUpInside)
         button.layer.cornerRadius = 10
         self.view.addSubview(button)
         
-        let textField = UITextField()
-        textField.borderStyle = .roundedRect
-        textField.text = "Fill me in"
-        self.view.addSubview(textField)
+        let myTextField = UITextField(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 - 50, width: 100, height: 50))
+
+        myTextField.borderStyle = .roundedRect
+        myTextField.text = username
+        self.view.addSubview(myTextField)
+        myTextField.addTarget(self,  action:#selector(changeUserName), for: .editingChanged)
     }
+    
     
     func setUpCardsUI() {
         // menu icon
