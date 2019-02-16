@@ -93,14 +93,22 @@ class ViewController: UIViewController {
                 for view in self.view.subviews {
                     view.removeFromSuperview()
                 }
+                var match = "Jennie"
+                if (self.username == "Jennie") {match = "Will"}
+                let imageView = UIImageView(image: UIImage(named: match))
+                imageView.contentMode = .scaleAspectFill
+                imageView.layer.masksToBounds = true
+                imageView.frame = CGRect(x: self.view.frame.width/2 - 50, y: self.view.frame.height/2 - 50, width: 100, height: 100)
+                self.view.addSubview(imageView)
+
                 //make new label
                 let foundLabel = UILabel()
-                foundLabel.text = "Found match!"
+                foundLabel.text = "You matched with " + match + "!"
                 foundLabel.numberOfLines = 3
                 foundLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 40)
                 foundLabel.textColor = UIColor(red: 250/255, green: 220/255, blue: 250/255, alpha: 1.0)
                 foundLabel.textAlignment = .center
-                foundLabel.frame = CGRect(x: (self.view.frame.width / 2) - 190, y: (self.view.frame.height / 2)-100, width: 400, height: 200)
+                foundLabel.frame = CGRect(x: (self.view.frame.width / 2) - 190, y: (self.view.frame.height / 2) - 250 , width: 400, height: 200)
                 self.view.addSubview(foundLabel)
                 self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
                 //

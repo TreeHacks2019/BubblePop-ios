@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CardSlider/ViewController.swift"
-            timestampString = "572040477.745676"
+            timestampString = "572041640.917374"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "layoutCards()"
             landmarkType = "7">
          </BreakpointContent>

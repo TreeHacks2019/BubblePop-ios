@@ -34,7 +34,7 @@ class ImageCard: CardView {
                 titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 30)
                 titleLabel.textColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1.0)
                 titleLabel.textAlignment = .center
-                titleLabel.frame = CGRect(x: 40, y: imageView.frame.height/2 - 150, width:self.frame.width - 48, height: 300)
+                titleLabel.frame = CGRect(x: 15, y: imageView.frame.height/2 - 150, width:imageView.frame.width - 15, height: 300)
                 self.addSubview(titleLabel)
             }
         }) { (error) in
