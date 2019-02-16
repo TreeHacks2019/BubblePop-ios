@@ -14,6 +14,7 @@
 		100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */; };
 		100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB21E64CA2800486D7C /* ImageCard.swift */; };
 		100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB31E64CA2800486D7C /* ViewController.swift */; };
+		EA06974C221818F10007FC57 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA06974B221818F10007FC57 /* main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiOptionsOverlay.swift; sourceTree = "<group>"; };
 		100D4DB21E64CA2800486D7C /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		100D4DB31E64CA2800486D7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EA06974B221818F10007FC57 /* main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				100D4DAF1E64CA2800486D7C /* AppDelegate.swift */,
 				100D4DB31E64CA2800486D7C /* ViewController.swift */,
 				100D4DB21E64CA2800486D7C /* ImageCard.swift */,
+				EA06974B221818F10007FC57 /* main.storyboard */,
 				100D4DB01E64CA2800486D7C /* CardView.swift */,
 				100D4DB11E64CA2800486D7C /* EmojiOptionsOverlay.swift */,
 				100D4DAD1E64CA0900486D7C /* Assets.xcassets */,
@@ -102,7 +105,6 @@
 				TargetAttributes = {
 					100D4D971E64C99D00486D7C = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7X43M2UT9A;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -132,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				100D4DAE1E64CA0900486D7C /* Assets.xcassets in Resources */,
+				EA06974C221818F10007FC57 /* main.storyboard in Resources */,
 				100D4DA61E64C99D00486D7C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,7 +266,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 7X43M2UT9A;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CardSlider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -279,7 +282,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 7X43M2UT9A;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CardSlider/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -10,12 +10,10 @@ import UIKit
 
 class ImageCard: CardView {
 
-    override init(frame: CGRect) {
+    init(frame: CGRect, num: Int) {
         super.init(frame: frame)
-        
         // image
-        
-        let imageView = UIImageView(image: UIImage(named: "dummy_image"))
+        let imageView = UIImageView(image: UIImage(named: "dummy_image\(num)"))
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
         imageView.layer.cornerRadius = 5
