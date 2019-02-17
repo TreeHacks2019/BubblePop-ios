@@ -21,6 +21,16 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9w9-a4-AoT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Footprints-PNG-Clipart" translatesAutoresizingMaskIntoConstraints="NO" id="NWA-eh-P5b">
+                                <rect key="frame" x="75" y="175" width="224" height="199"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Head over to Stanford..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6TO-jb-H8i">
+                                <rect key="frame" x="60" y="59" width="254" height="115"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -38,7 +48,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1770" y="414"/>
+            <point key="canvasLocation" x="1768.8" y="413.3433283358321"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="g8d-Ez-8hB">
@@ -132,4 +142,7 @@
             <point key="canvasLocation" x="906" y="415"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Footprints-PNG-Clipart" width="600" height="435"/>
+    </resources>
 </document>

@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:CardSlider.xcodeproj">
+      location = "group:/Users/stewart/code/src/github.com/sdulaney/treehacks-ios/BubblePop.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

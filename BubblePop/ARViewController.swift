@@ -65,7 +65,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         debugLabel.font = UIFont(name: "AvenirNext-Bold", size: 20)
         debugLabel.textAlignment = .center
         debugLabel.frame = CGRect(x: 15, y: self.view.frame.height/2 - 150, width:self.view.frame.width - 15, height: 300)
-        self.view.addSubview(debugLabel)
+        // self.view.addSubview(debugLabel)
         
         let id = UIDevice.current.identifierForVendor!.uuidString
         let ref = Database.database().reference()
@@ -102,8 +102,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         })
         
         // TODO maybe activate only when user is close enough
-        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 100, width: 100, height: 50))
-        button.backgroundColor = .cyan
+        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 200, width: 100, height: 50))
+        button.backgroundColor = .black
         button.setTitle("Found!", for: .normal)
         button.addTarget(self, action: #selector(foundPerson), for: .touchUpInside)
         button.layer.cornerRadius = 10
@@ -166,7 +166,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
             let res = "set position: " + String(describing: self.treeNode?.position)
             
-            debugLabel.text = "Head over to Stanford!"
         }
     }
     
@@ -210,7 +209,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
         let res = "set position: " + String(describing: self.treeNode?.position)
         print(res)
-        debugLabel.text = "Hi! Head over to Stanford!"
     }
     
 }

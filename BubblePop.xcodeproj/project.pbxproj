@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		100D4D981E64C99D00486D7C /* CardSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		100D4D981E64C99D00486D7C /* BubblePop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BubblePop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		100D4DA51E64C99D00486D7C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		100D4DA71E64C99D00486D7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		100D4DAD1E64CA0900486D7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -55,7 +55,7 @@
 		100D4D8F1E64C99D00486D7C = {
 			isa = PBXGroup;
 			children = (
-				100D4D9A1E64C99D00486D7C /* CardSlider */,
+				100D4D9A1E64C99D00486D7C /* BubblePop */,
 				100D4D991E64C99D00486D7C /* Products */,
 				838EFED101C98F58F6CA4CE8 /* Pods */,
 				7FACB8F350F4617DD8988612 /* Frameworks */,
@@ -65,12 +65,12 @@
 		100D4D991E64C99D00486D7C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				100D4D981E64C99D00486D7C /* CardSlider.app */,
+				100D4D981E64C99D00486D7C /* BubblePop.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		100D4D9A1E64C99D00486D7C /* CardSlider */ = {
+		100D4D9A1E64C99D00486D7C /* BubblePop */ = {
 			isa = PBXGroup;
 			children = (
 				EAB3639422186F2F00645F69 /* GoogleService-Info.plist */,
@@ -86,7 +86,7 @@
 				8D5B4378221892CE00F01C04 /* art.scnassets */,
 				8D5B437A2218940600F01C04 /* ARViewController.swift */,
 			);
-			path = CardSlider;
+			path = BubblePop;
 			sourceTree = "<group>";
 		};
 		7FACB8F350F4617DD8988612 /* Frameworks */ = {
@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		100D4D971E64C99D00486D7C /* CardSlider */ = {
+		100D4D971E64C99D00486D7C /* BubblePop */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 100D4DAA1E64C99D00486D7C /* Build configuration list for PBXNativeTarget "CardSlider" */;
+			buildConfigurationList = 100D4DAA1E64C99D00486D7C /* Build configuration list for PBXNativeTarget "BubblePop" */;
 			buildPhases = (
 				45F5FCFEFC4C1F839278A527 /* [CP] Check Pods Manifest.lock */,
 				100D4D941E64C99D00486D7C /* Sources */,
@@ -122,9 +122,9 @@
 			);
 			dependencies = (
 			);
-			name = CardSlider;
+			name = BubblePop;
 			productName = CardSlider;
-			productReference = 100D4D981E64C99D00486D7C /* CardSlider.app */;
+			productReference = 100D4D981E64C99D00486D7C /* BubblePop.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -145,7 +145,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 100D4D931E64C99D00486D7C /* Build configuration list for PBXProject "CardSlider" */;
+			buildConfigurationList = 100D4D931E64C99D00486D7C /* Build configuration list for PBXProject "BubblePop" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -158,7 +158,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				100D4D971E64C99D00486D7C /* CardSlider */,
+				100D4D971E64C99D00486D7C /* BubblePop */,
 			);
 		};
 /* End PBXProject section */
@@ -340,13 +340,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 7X43M2UT9A;
-				INFOPLIST_FILE = CardSlider/Info.plist;
+				INFOPLIST_FILE = BubblePop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
+				PRODUCT_BUNDLE_IDENTIFIER = treehacks2019.BubblePop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -357,13 +357,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 7X43M2UT9A;
-				INFOPLIST_FILE = CardSlider/Info.plist;
+				INFOPLIST_FILE = BubblePop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
+				PRODUCT_BUNDLE_IDENTIFIER = treehacks2019.BubblePop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -372,7 +372,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		100D4D931E64C99D00486D7C /* Build configuration list for PBXProject "CardSlider" */ = {
+		100D4D931E64C99D00486D7C /* Build configuration list for PBXProject "BubblePop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100D4DA81E64C99D00486D7C /* Debug */,
@@ -381,7 +381,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		100D4DAA1E64C99D00486D7C /* Build configuration list for PBXNativeTarget "CardSlider" */ = {
+		100D4DAA1E64C99D00486D7C /* Build configuration list for PBXNativeTarget "BubblePop" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				100D4DAB1E64C99D00486D7C /* Debug */,
