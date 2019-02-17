@@ -137,7 +137,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             ref.child("profile").child(username).child("lng").setValue(long);
             
             // add this
-            let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: 0.0)
+            let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: self.degreesToRadians(degrees: directionDegrees))
             self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
             print("set position: ", self.treeNode?.position)
         }
