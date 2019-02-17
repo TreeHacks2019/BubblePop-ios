@@ -27,11 +27,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     var debugLabel : UILabel = UILabel()
     
     func getVector(lat0: Double, long0: Double, lat1: Double, long1: Double, compass_angle: Double) -> (Double, Double, Double) {
+        
+        let distance = CLLocation(latitude: lat0, longitude: long0).distance(from: CLLocation(latitude: lat1, longitude: long1))
+        
         let dLon = long1 - long0
-        let y = sin(dLon) * cos(lat1)
-        let x = cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon)
+        let y = sin(dLon) * cos(lat1) * 6.371e6
+        let x = cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon) * 6.371e6
         let bearing = atan2(y, x)
-        let distance = sqrt(x*x + y*y)
+        //let distance = sqrt(x*x + y*y)
         
         //let compass_angle = 0.0 // heading clockwise from true north
         if (x <= 0){
