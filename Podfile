@@ -9,4 +9,5 @@ target 'CardSlider' do
   pod 'Firebase/Database'
   # Pods for CardSlider
   pod 'ContractCodegen', '~> 0.1'
+  pod 'EtherKit'
 end

@@ -89,6 +89,7 @@ PODS:
 
 DEPENDENCIES:
   - ContractCodegen (~> 0.1)
+  - EtherKit
   - Firebase
   - Firebase/Core
   - Firebase/Database
@@ -140,6 +141,6 @@ SPEC CHECKSUMS:
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: d264564f41de5d431698007b8656786ff8ba9a07
+PODFILE CHECKSUM: 7581f8f4e75ad2c0096df6c97c9e45298e283f84
 
 COCOAPODS: 1.6.0.beta.2
