@@ -8,6 +8,7 @@ target 'BubblePop' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'TwilioVoice', '~> 2.0'
+  pod 'ARCL'
   # Pods for CardSlider
 
 end

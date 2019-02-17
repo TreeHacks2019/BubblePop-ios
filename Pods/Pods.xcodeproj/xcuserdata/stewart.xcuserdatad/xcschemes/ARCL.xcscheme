@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0806A186FDBA272DEBCB8BBA5467A5CC"
-               BlueprintName = "Pods-BubblePop"
+               BlueprintIdentifier = "12CFBF45D9C430A9025FD2CD85ADA7F7"
+               BlueprintName = "ARCL"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "libPods-BubblePop.a">
+               BuildableName = "libARCL.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

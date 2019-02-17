@@ -1,0 +1,6 @@
+module Pods_BubblePop {
+  umbrella header "Pods-BubblePop-umbrella.h"
+
+  export *
+  module * { export * }
+}
