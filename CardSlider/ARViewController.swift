@@ -23,6 +23,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     var target_long: Double = 0.0
     var username = "Will"
     var timer: Timer!
+    var directionDegrees : Double = 0.0
     
     func getVector(lat0: Double, long0: Double, lat1: Double, long1: Double, compass_angle: Double) -> (Double, Double, Double) {
         let dLon = long1 - long0
@@ -62,6 +63,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        locationManager.startUpdatingHeading()
         
         // Set the view's delegate
         sceneView.delegate = self
@@ -141,6 +143,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         }
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        print(newHeading.trueHeading)
+        directionDegrees = newHeading.trueHeading
+    }
+    
     //Write the didFailWithError method here:
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
@@ -162,6 +169,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             }
             print( self.target_lat, self.target_long, "gotten")
             // update
+            
         }) { (error) in
             print(error.localizedDescription)
         }
