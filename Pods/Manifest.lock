@@ -1,4 +1,23 @@
 PODS:
+  - BigInt (3.1.0):
+    - SipHash (~> 1.2)
+  - ContractCodegen (0.1):
+    - EtherKit (~> 0.2.0)
+    - ReactiveSwift (~> 4.0)
+  - CryptoSwift (0.14.0)
+  - EtherKit (0.2.0):
+    - EtherKit/Core (= 0.2.0)
+    - EtherKit/PromiseKit (= 0.2.0)
+  - EtherKit/Core (0.2.0):
+    - BigInt
+    - CryptoSwift
+    - Marshal
+    - Result (~> 4.0.0)
+    - secp256k1.swift
+    - Starscream
+  - EtherKit/PromiseKit (0.2.0):
+    - EtherKit/Core
+    - PromiseKit/CorePromise
   - Firebase (5.16.0):
     - Firebase/Core (= 5.16.0)
   - Firebase/Core (5.16.0):
@@ -54,19 +73,32 @@ PODS:
   - GoogleUtilities/UserDefaults (5.3.7):
     - GoogleUtilities/Logger
   - leveldb-library (1.20)
+  - Marshal (1.2.7)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - PromiseKit/CorePromise (6.8.3)
+  - ReactiveSwift (4.0.0):
+    - Result (~> 4.0)
+  - Result (4.0.1)
+  - secp256k1.swift (0.1.4)
+  - SipHash (1.2.2)
+  - Starscream (3.0.6)
 
 DEPENDENCIES:
+  - ContractCodegen (~> 0.1)
   - Firebase
   - Firebase/Core
   - Firebase/Database
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - BigInt
+    - ContractCodegen
+    - CryptoSwift
+    - EtherKit
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -76,9 +108,20 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - leveldb-library
+    - Marshal
     - nanopb
+    - PromiseKit
+    - ReactiveSwift
+    - Result
+    - secp256k1.swift
+    - SipHash
+    - Starscream
 
 SPEC CHECKSUMS:
+  BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
+  ContractCodegen: 3cf0f6d27309cc20a2ff1decef389e62b035868d
+  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
+  EtherKit: 17dc49304b1841a141666ea2c20a733ef8d66d25
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
   FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -88,8 +131,15 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  Marshal: ef480864a6af10a63f67be7e55bb5d8fe67a16d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
+  ReactiveSwift: a2bb9ace428a109e9c0209615645d9d286c8c433
+  Result: a6e784bebf48b471d59cddc1adb81f41f678c487
+  secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
+  SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
 
-PODFILE CHECKSUM: f1e777f1365c5c15634612c7c77c2c22f97476c1
+PODFILE CHECKSUM: d264564f41de5d431698007b8656786ff8ba9a07
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.0.beta.2

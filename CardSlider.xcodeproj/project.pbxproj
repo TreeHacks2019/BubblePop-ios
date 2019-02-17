@@ -15,9 +15,11 @@
 		100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB21E64CA2800486D7C /* ImageCard.swift */; };
 		100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100D4DB31E64CA2800486D7C /* ViewController.swift */; };
 		50945948E61E1C93388EF8DF /* libPods-CardSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 429358A8D191600C24A8631B /* libPods-CardSlider.a */; };
+		7AB2A4EB8985D02714A11911 /* HelloContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F86F18407D10A02EE2DC6 /* HelloContract.swift */; };
 		8D5B4358221890DA00F01C04 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B4357221890DA00F01C04 /* main.storyboard */; };
 		8D5B4379221892CE00F01C04 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B4378221892CE00F01C04 /* art.scnassets */; };
 		8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B437A2218940600F01C04 /* ARViewController.swift */; };
+		CB8DCF850ADC0461FB0EDD80 /* SharedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0552100A15F26C7D2AF7EB2 /* SharedContract.swift */; };
 		EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB3639422186F2F00645F69 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -36,8 +38,11 @@
 		8D5B4357221890DA00F01C04 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		8D5B4378221892CE00F01C04 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		8D5B437A2218940600F01C04 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
+		9B4236842219353B00DE80CA /* data.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.release.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.release.xcconfig"; sourceTree = "<group>"; };
+		E0552100A15F26C7D2AF7EB2 /* SharedContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedContract.swift; path = GeneraredContracts/SharedContract.swift; sourceTree = "<group>"; };
 		EAB3639422186F2F00645F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FA6F86F18407D10A02EE2DC6 /* HelloContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HelloContract.swift; path = GeneraredContracts/HelloContract.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +90,19 @@
 				100D4DA71E64C99D00486D7C /* Info.plist */,
 				8D5B4378221892CE00F01C04 /* art.scnassets */,
 				8D5B437A2218940600F01C04 /* ARViewController.swift */,
+				9B4236842219353B00DE80CA /* data.json */,
+				6F17C4936FE2B8B9D1F3AF6C /* GeneraredContracts */,
 			);
 			path = CardSlider;
+			sourceTree = "<group>";
+		};
+		6F17C4936FE2B8B9D1F3AF6C /* GeneraredContracts */ = {
+			isa = PBXGroup;
+			children = (
+				FA6F86F18407D10A02EE2DC6 /* HelloContract.swift */,
+				E0552100A15F26C7D2AF7EB2 /* SharedContract.swift */,
+			);
+			name = GeneraredContracts;
 			sourceTree = "<group>";
 		};
 		7FACB8F350F4617DD8988612 /* Frameworks */ = {
@@ -117,6 +133,7 @@
 				100D4D941E64C99D00486D7C /* Sources */,
 				100D4D951E64C99D00486D7C /* Frameworks */,
 				100D4D961E64C99D00486D7C /* Resources */,
+				41E0D1C522996FC73CFADE98 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,6 +196,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		41E0D1C522996FC73CFADE98 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CardSlider/Pods-CardSlider-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/EtherKit/WordLists.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WordLists.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CardSlider/Pods-CardSlider-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		45F5FCFEFC4C1F839278A527 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,6 +249,8 @@
 				8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */,
 				100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */,
 				100D4DB71E64CA2800486D7C /* ImageCard.swift in Sources */,
+				7AB2A4EB8985D02714A11911 /* HelloContract.swift in Sources */,
+				CB8DCF850ADC0461FB0EDD80 /* SharedContract.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

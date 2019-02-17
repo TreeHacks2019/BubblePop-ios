@@ -1,0 +1,11 @@
+CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/ContractCodegen
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/BigInt/BigInt.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/CryptoSwift/CryptoSwift.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/EtherKit/EtherKit.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Marshal/Marshal.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit/PromiseKit.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift/ReactiveSwift.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Result/Result.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/SipHash/SipHash.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/Starscream/Starscream.modulemap" -fmodule-map-file="${PODS_ROOT}/Headers/Public/secp256k1/secp256k1.swift.modulemap"
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_ROOT = ${SRCROOT}
+PODS_TARGET_SRCROOT = ${PODS_ROOT}/ContractCodegen
+PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
+SKIP_INSTALL = YES
+SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/BigInt" "${PODS_CONFIGURATION_BUILD_DIR}/CryptoSwift" "${PODS_CONFIGURATION_BUILD_DIR}/EtherKit" "${PODS_CONFIGURATION_BUILD_DIR}/Marshal" "${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit" "${PODS_CONFIGURATION_BUILD_DIR}/ReactiveSwift" "${PODS_CONFIGURATION_BUILD_DIR}/Result" "${PODS_CONFIGURATION_BUILD_DIR}/SipHash" "${PODS_CONFIGURATION_BUILD_DIR}/Starscream"

@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
-import CreateML
-import NaturalLanguage
+//import CreateML
+//import NaturalLanguage
+import EtherKit
 
 class ViewController: UIViewController {
     /// Data structure for custom cards - in this example, we're using an array of ImageCards

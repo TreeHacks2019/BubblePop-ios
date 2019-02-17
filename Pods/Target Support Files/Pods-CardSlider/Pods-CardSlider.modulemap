@@ -1,4 +1,4 @@
-framework module Pods_CardSlider {
+module Pods_CardSlider {
   umbrella header "Pods-CardSlider-umbrella.h"
 
   export *
