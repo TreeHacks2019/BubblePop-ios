@@ -181,6 +181,13 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         }) { (error) in
             print(error.localizedDescription)
         }
+        
+        // add this
+        let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: self.degreesToRadians(degrees: directionDegrees))
+        self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
+        let res = "set position: " + String(describing: self.treeNode?.position)
+        print(res)
+        debugLabel.text = "Test" + String(describing: self.treeNode?.position)
     }
     
 }
