@@ -31,8 +31,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         let distance = CLLocation(latitude: lat0, longitude: long0).distance(from: CLLocation(latitude: lat1, longitude: long1))
         
         let dLon = long1 - long0
-        let y = sin(dLon) * cos(lat1) * 6.371e6
-        let x = cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon) * 6.371e6
+        let y = sin(dLon) * cos(lat1) * distance
+        let x = cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon) * distance
         let bearing = atan2(y, x)
         //let distance = sqrt(x*x + y*y)
         
