@@ -19,6 +19,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     let locationManager = CLLocationManager()
     var lat: Double = 0.0
     var long : Double = 0.0
+    var target_lat: Double = 0.0
+    var target_long: Double = 0.0
     var username = "Will"
     var timer: Timer!
     
@@ -117,27 +119,22 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     func timerHasBeenCalled() {
         // update this
         var target = "Jennie"
-        var target_lat = 0.0
-        var target_lng = 0.0
         if (username == "Jennie") {target = "Will"}
         
         let ref = Database.database().reference()
         ref.child("profile").child(target).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String : AnyObject] ?? [:]
             if (value["lat"] != nil) {
-                target_lat = value["lat"] as! Double
+                self.target_lat = value["lat"] as! Double
             }
             if (value["lng"] != nil) {
-                target_lng = value["lng"] as! Double
+                self.target_long = value["lng"] as! Double
             }
-            print(target_lat,target_lng, "gotten")
+            print( self.target_lat, self.target_long, "gotten")
             // update
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        
-        
     }
     
 }
