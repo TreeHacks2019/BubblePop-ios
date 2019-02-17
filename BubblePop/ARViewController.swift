@@ -47,6 +47,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     var distance : Double = 0.0
     var deviceTokenString: String?
     var heading: Double = 0.0
+    var target_lat: Double = 0.0
+    var target_long: Double = 0.0
     
     var voipRegistry: PKPushRegistry
     var incomingPushCompletionCallback: (()->Swift.Void?)? = nil
@@ -136,14 +138,6 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
 //        outgoingValue.delegate = self
         sceneLocationView.run()
         view.addSubview(sceneLocationView)
-        
-        let coordinate = CLLocationCoordinate2D(latitude: 37.42780644837787, longitude: -122.17420189799971)
-        let location = CLLocation(coordinate: coordinate, altitude: 5)
-        let image = UIImage(named: "pin")!
-        
-        let annotationNode = LocationAnnotationNode(location: location, image: image)
-//        annotationNode.scaleRelativeToDistance = true
-        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,17 +194,38 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         if (username == "Jennie") {target = "Will"}
         
         let ref = Database.database().reference()
+//        ref.child("profile").child(target).observeSingleEvent(of: .value, with: { (snapshot) in
+//            let value = snapshot.value as? [String : AnyObject] ?? [:]
+//            if (value["lat"] != nil && value["lng"] != nil) {
+//                self.location = CLLocation(latitude: value["lat"] as! Double, longitude: value["lng"] as! Double)
+//                self.updateLocation(self.location.coordinate.latitude, self.location.coordinate.longitude)
+//            }
+//        }) { (error) in
+//            print(error.localizedDescription)
+//        }
+//        ref.child("profile").child(username).child("lat").setValue(self.userLocation.coordinate.latitude);
+//        ref.child("profile").child(username).child("lng").setValue(self.userLocation.coordinate.longitude);
         ref.child("profile").child(target).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String : AnyObject] ?? [:]
-            if (value["lat"] != nil && value["lng"] != nil) {
-                self.location = CLLocation(latitude: value["lat"] as! Double, longitude: value["lng"] as! Double)
-                self.updateLocation(self.location.coordinate.latitude, self.location.coordinate.longitude)
+            if (value["lat"] != nil) {
+                self.target_lat = value["lat"] as! Double
             }
+            if (value["lng"] != nil) {
+                self.target_long = value["lng"] as! Double
+            }
+            print( self.target_lat, self.target_long, "gotten")
+            // update
+            
         }) { (error) in
             print(error.localizedDescription)
         }
-        ref.child("profile").child(username).child("lat").setValue(self.userLocation.coordinate.latitude);
-        ref.child("profile").child(username).child("lng").setValue(self.userLocation.coordinate.longitude);
+        
+        let coordinate = CLLocationCoordinate2D(latitude: target_lat, longitude: target_long)
+        let location = CLLocation(coordinate: coordinate, altitude: 5)
+        let image = UIImage(named: "pin")!
+        
+        let annotationNode = LocationAnnotationNode(location: location, image: image)
+        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
     }
     
     required init?(coder aDecoder: NSCoder) {
