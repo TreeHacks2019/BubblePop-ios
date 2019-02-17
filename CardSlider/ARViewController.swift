@@ -42,12 +42,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             let rotation = -compass_angle
             let xp = cos(rotation)*x + sin(rotation)*y
             let yp = -sin(rotation)*x + cos(rotation)*y
-            return (xp, 0, -yp)
+            return (xp, yp, 0)
         }
         let rotation = compass_angle
         let xp = cos(rotation)*x + sin(rotation)*y
         let yp = -sin(rotation)*x + cos(rotation)*y
-        return (xp, 0, -yp)
+        return (xp, yp, 0)
         //return (, -distance)
     }
     
