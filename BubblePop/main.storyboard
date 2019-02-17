@@ -13,14 +13,11 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ARViewController" customModule="CardSlider" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ARViewController" customModule="BubblePop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9w9-a4-AoT">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </arscnView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Footprints-PNG-Clipart" translatesAutoresizingMaskIntoConstraints="NO" id="NWA-eh-P5b">
                                 <rect key="frame" x="75" y="175" width="224" height="199"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -33,16 +30,9 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="9w9-a4-AoT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4eo-TR-a6q"/>
-                            <constraint firstItem="9w9-a4-AoT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="P2h-Hu-u2J"/>
-                            <constraint firstItem="9w9-a4-AoT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="we3-sT-gg3"/>
-                            <constraint firstItem="9w9-a4-AoT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="x8g-m2-qzZ"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="sceneView" destination="9w9-a4-AoT" id="DBN-Mi-fOL"/>
                         <segue destination="fCD-Sw-AZf" kind="show" identifier="SecondSegue" id="vNu-tZ-vlu"/>
                     </connections>
                 </viewController>
@@ -126,7 +116,7 @@
         <!--View Controller-->
         <scene sceneID="1UP-89-X4t">
             <objects>
-                <viewController id="Vjz-zu-wfc" customClass="ViewController" customModule="CardSlider" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Vjz-zu-wfc" customClass="ViewController" customModule="BubblePop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ac8-25-HSc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

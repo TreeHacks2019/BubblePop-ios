@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F586F1CCE014707F77C5D3BD455B5CE8"
+               BlueprintIdentifier = "92045B4B3ACB33A180C701F7213A45C0"
                BlueprintName = "TwilioVoice"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "TwilioVoice">

@@ -17,6 +17,8 @@ import PushKit
 import CallKit
 import TwilioVoice
 
+import ARCL
+
 let baseURLString = "https://838fd95b.ngrok.io"
 // If your token server is written in PHP, accessTokenEndpoint needs .php extension at the end. For example : /accessToken.php
 let accessTokenEndpoint = "/accessToken"
@@ -25,7 +27,7 @@ let twimlParamTo = "to"
 
 class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDelegate, PKPushRegistryDelegate, TVONotificationDelegate, TVOCallDelegate, CXProviderDelegate, UITextFieldDelegate {
     
-    @IBOutlet var sceneView: ARSCNView!
+//    @IBOutlet var sceneView: ARSCNView!
     var modelNode:SCNNode!
 //    @IBOutlet weak var placeCallButton: UIButton!
 //    @IBOutlet weak var iconView: UIImageView!
@@ -59,6 +61,8 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     let callKitProvider: CXProvider
     let callKitCallController: CXCallController
     var userInitiatedDisconnect: Bool = false
+    
+    var sceneLocationView = SceneLocationView()
     
   
     func foundPerson(_ sender: Any) {
@@ -94,10 +98,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         locationManager.startUpdatingHeading()
         
         // Set the view's delegate
-        sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
+//        sceneView.delegate = self
+//
+//        // Show statistics such as fps and timing information
+//        sceneView.showsStatistics = true
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/Lowpoly_tree_sample")!
@@ -106,7 +110,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         //self.treeNode?.position = SCNVector3Make(0, 0, -1)
         
         // Set the scene to the view
-        sceneView.scene = scene
+//        sceneView.scene = scene
         
         // Create timer
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { [weak self] (_) in
@@ -130,6 +134,16 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         
 //        toggleUIState(isEnabled: true, showCallControl: false)
 //        outgoingValue.delegate = self
+        sceneLocationView.run()
+        view.addSubview(sceneLocationView)
+        
+        let coordinate = CLLocationCoordinate2D(latitude: 37.42780644837787, longitude: -122.17420189799971)
+        let location = CLLocation(coordinate: coordinate, altitude: 5)
+        let image = UIImage(named: "pin")!
+        
+        let annotationNode = LocationAnnotationNode(location: location, image: image)
+//        annotationNode.scaleRelativeToDistance = true
+        sceneLocationView.addLocationNodeWithConfirmedLocation(locationNode: annotationNode)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -139,14 +153,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = [.horizontal]
         // Run the view's session
-        sceneView.session.run(configuration)
+//        sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
-        sceneView.session.pause()
+//        sceneView.session.pause()
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
@@ -784,6 +798,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         let node = SCNNode(geometry: plane)
         node.constraints = [SCNBillboardConstraint()]
         return node
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        sceneLocationView.frame = view.bounds
     }
     
 }
