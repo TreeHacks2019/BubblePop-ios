@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import CreateML
+import NaturalLanguage
 
 class ViewController: UIViewController {
     /// Data structure for custom cards - in this example, we're using an array of ImageCards
@@ -25,6 +27,23 @@ class ViewController: UIViewController {
         self.view.backgroundColor = UIColor(red: 28/255, green: 39/255, blue: 101/255, alpha: 1.0)
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
         setUpDummyUI()
+    }
+    
+    func classifier() {
+        let data = try MLDataTable(contentsOf: URL(fileURLWithPath: "data.json"))
+        let (trainingData, testingData) = data.randomSplit(by: 0.8, seed: 5)
+        
+        let sentimentClassifier = try MLTextClassifier(trainingData: trainingData,
+                                                       textColumn: "text",
+                                                       labelColumn: "sentiment")
+        let trainingAccuracy = (1.0 - sentimentClassifier.trainingMetrics.classificationError) * 100
+        let validationAccuracy = (1.0 - sentimentClassifier.validationMetrics.classificationError) * 100
+        
+        let evaluationMetrics = sentimentClassifier.evaluation(on: testingData)
+        let evaluationAccuracy = (1.0 - evaluationMetrics.classificationError) * 100
+        
+        let sentimentPredictor = try NLModel(mlModel: SentimentClassifier().model)
+        sentimentPredictor.predictedLabel(for: "It was the best I've ever seen!")
     }
     
     func loadCards(){
