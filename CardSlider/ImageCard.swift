@@ -57,15 +57,6 @@ class ImageCard: CardView {
         textBox2.frame = CGRect(x: 12, y: textBox1.frame.maxY + 10, width: 120, height: 24)
         self.addSubview(textBox2)
         
-         // Stewart testing UILabel
-//        let titleLabel = UILabel()
-//        titleLabel.text = "Read more..."
-//        titleLabel.numberOfLines = 2
-//        titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 19)
-//        titleLabel.textColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 1.0)
-//        titleLabel.textAlignment = .center
-//        titleLabel.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: 200, height: 24)
-//        self.addSubview(titleLabel)
     }
     
     required init?(coder aDecoder: NSCoder) {
