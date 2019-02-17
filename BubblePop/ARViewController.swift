@@ -58,6 +58,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         // interact with second segue
         performSegue(withIdentifier: "SecondSegue", sender: sender)
     }
+    
+    func placeCall(_ sender: Any) {
+        print("call button tapped...")
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -102,12 +107,19 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         })
         
         // TODO maybe activate only when user is close enough
-        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 200, width: 100, height: 50))
+        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 100, width: 100, height: 50))
         button.backgroundColor = .black
         button.setTitle("Found!", for: .normal)
         button.addTarget(self, action: #selector(foundPerson), for: .touchUpInside)
         button.layer.cornerRadius = 10
         self.view.addSubview(button)
+        
+        let callButton = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 200, width: 100, height: 50))
+        callButton.backgroundColor = .black
+        callButton.setTitle("Call", for: .normal)
+        callButton.addTarget(self, action: #selector(placeCall), for: .touchUpInside)
+        callButton.layer.cornerRadius = 10
+        self.view.addSubview(callButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
