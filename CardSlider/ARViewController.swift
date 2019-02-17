@@ -24,6 +24,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     var username = "Will"
     var timer: Timer!
     var directionDegrees : Double = 0.0
+    var debugLabel : UILabel = UILabel()
     
     func getVector(lat0: Double, long0: Double, lat1: Double, long1: Double, compass_angle: Double) -> (Double, Double, Double) {
         let dLon = long1 - long0
@@ -50,6 +51,11 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        debugLabel.text = "Test"
+        debugLabel.font = UIFont(name: "AvenirNext-Bold", size: 10)
+        debugLabel.textAlignment = .center
+        debugLabel.frame = CGRect(x: 15, y: self.view.frame.height/2 - 150, width:self.view.frame.width - 15, height: 300)
+        self.view.addSubview(debugLabel)
         
         let id = UIDevice.current.identifierForVendor!.uuidString
         let ref = Database.database().reference()
@@ -139,7 +145,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             // add this
             let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: self.degreesToRadians(degrees: directionDegrees))
             self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
-            print("set position: ", self.treeNode?.position)
+            let res = "set position: " + String(describing: self.treeNode?.position)
+            print(res)
+            debugLabel.text = "Test" + String(describing: self.treeNode?.position)
         }
     }
     
