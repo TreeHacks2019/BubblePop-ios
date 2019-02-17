@@ -220,7 +220,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         }) { (error) in
             print(error.localizedDescription)
         }
-        
+        sceneLocationView.removeAllNodes()
         let coordinate = CLLocationCoordinate2D(latitude: target_lat, longitude: target_long)
         let location = CLLocation(coordinate: coordinate, altitude: 5)
         let image = UIImage(named: "pin")!

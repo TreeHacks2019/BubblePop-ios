@@ -101,6 +101,14 @@ public class SceneLocationView: ARSCNView, ARSCNViewDelegate {
         super.init(coder: aDecoder)
         finishInitialization()
     }
+    
+    public func removeAllNodes() {
+        locationNodes.removeAll()
+        guard let childNodes = sceneNode?.childNodes else { return }
+        for node in childNodes {
+            node.removeFromParentNode()
+        }
+    }
 
     private func finishInitialization() {
         locationManager.delegate = self
