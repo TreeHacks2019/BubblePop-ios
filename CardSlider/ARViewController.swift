@@ -32,7 +32,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         
         let dLon = long1 - long0
         let y = sin(dLon) * cos(lat1) * distance
-        let x = cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon) * distance
+        let x = (cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon)) * distance
         let bearing = atan2(y, x)
         //let distance = sqrt(x*x + y*y)
         
