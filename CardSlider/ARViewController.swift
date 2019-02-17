@@ -27,14 +27,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     var debugLabel : UILabel = UILabel()
     
     func getVector(lat0: Double, long0: Double, lat1: Double, long1: Double, compass_angle: Double) -> (Double, Double, Double) {
-        
+        let lat0r = self.degreesToRadians(degrees: lat0)
+        let lat1r = self.degreesToRadians(degrees: lat1)
+        let long0r = self.degreesToRadians(degrees: long0)
+        let long1r = self.degreesToRadians(degrees: long1)
         let distance = CLLocation(latitude: lat0, longitude: long0).distance(from: CLLocation(latitude: lat1, longitude: long1))
         
-        let dLon = long1 - long0
-        let y = sin(dLon) * cos(lat1) * distance
-        let x = (cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon)) * distance
+        let dLon = long1r - long0r
+        let y = sin(dLon) * cos(lat1r) * distance
+        let x = (cos(lat0r)*sin(lat1r) - sin(lat0r)*cos(lat1r)*cos(dLon)) * distance
+//        print("distance",distance)
+//        print(y,x,(y*y+x*x).squareRoot(),"alternative distance")
         let bearing = atan2(y, x)
-        //let distance = sqrt(x*x + y*y)
         
         //let compass_angle = 0.0 // heading clockwise from true north
         if (x <= 0){
@@ -48,14 +52,17 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         let xp = cos(rotation)*x + sin(rotation)*y
         let yp = -sin(rotation)*x + cos(rotation)*y
         return (xp, yp, 0)
-        //return (, -distance)
     }
     
+    func foundPerson(_ sender: Any) {
+        // interact with second segue
+        performSegue(withIdentifier: "SecondSegue", sender: sender)
+    }
     override func viewDidLoad() {
         
         super.viewDidLoad()
         debugLabel.text = "Test"
-        debugLabel.font = UIFont(name: "AvenirNext-Bold", size: 10)
+        debugLabel.font = UIFont(name: "AvenirNext-Bold", size: 20)
         debugLabel.textAlignment = .center
         debugLabel.frame = CGRect(x: 15, y: self.view.frame.height/2 - 150, width:self.view.frame.width - 15, height: 300)
         self.view.addSubview(debugLabel)
@@ -81,8 +88,9 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         sceneView.showsStatistics = true
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/Lowpoly_tree_sample.dae")!
+        let scene = SCNScene(named: "art.scnassets/Lowpoly_tree_sample")!
         self.treeNode = scene.rootNode.childNode(withName: "Tree_lp_11", recursively: true)
+        //self.treeNode?.rotation = vector4(x:0,y:90,z:0,w:0)
         //self.treeNode?.position = SCNVector3Make(0, 0, -1)
         
         // Set the scene to the view
@@ -92,6 +100,14 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { [weak self] (_) in
             self?.timerHasBeenCalled()
         })
+        
+        // TODO maybe activate only when user is close enough
+        let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 100, width: 100, height: 50))
+        button.backgroundColor = .cyan
+        button.setTitle("Found!", for: .normal)
+        button.addTarget(self, action: #selector(foundPerson), for: .touchUpInside)
+        button.layer.cornerRadius = 10
+        self.view.addSubview(button)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -146,17 +162,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             ref.child("profile").child(username).child("lng").setValue(long);
             
             // add this
-            let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: self.degreesToRadians(degrees: directionDegrees))
+            let vec3 = self.getVector(lat0: lat, long0: long, lat1: target_lat, long1: target_long, compass_angle: directionDegrees)
             self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
             let res = "set position: " + String(describing: self.treeNode?.position)
-            print(res)
-            debugLabel.text = "Test" + String(describing: self.treeNode?.position)
+            
+            debugLabel.text = "Head over to Stanford!"
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         print(newHeading.trueHeading)
         directionDegrees = newHeading.trueHeading
+        let vec3 = self.getVector(lat0: lat, long0: long, lat1: target_lat, long1: target_long, compass_angle: directionDegrees)
+        self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
+        
     }
     
     //Write the didFailWithError method here:
@@ -186,11 +205,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         }
         
         // add this
-        let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: self.degreesToRadians(degrees: directionDegrees))
+        
+        let vec3 = self.getVector(lat0: lat, long0: long, lat1: target_lat, long1: target_long, compass_angle: directionDegrees)
         self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
         let res = "set position: " + String(describing: self.treeNode?.position)
         print(res)
-        debugLabel.text = "Test" + String(describing: self.treeNode?.position)
+        debugLabel.text = "Hi! Head over to Stanford!"
     }
     
 }

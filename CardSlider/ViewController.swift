@@ -105,7 +105,7 @@ class ViewController: UIViewController {
 
                 //make new label
                 let foundLabel = UILabel()
-                foundLabel.text = "You matched with " + match + "!"
+                foundLabel.text = "You connected with " + match + "!"
                 foundLabel.numberOfLines = 3
                 foundLabel.font = UIFont(name: "AvenirNextCondensed-Heavy", size: 40)
                 foundLabel.textColor = UIColor(red: 250/255, green: 220/255, blue: 250/255, alpha: 1.0)
