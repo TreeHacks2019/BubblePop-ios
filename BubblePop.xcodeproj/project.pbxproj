@@ -18,6 +18,7 @@
 		8D5B4358221890DA00F01C04 /* main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B4357221890DA00F01C04 /* main.storyboard */; };
 		8D5B4379221892CE00F01C04 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B4378221892CE00F01C04 /* art.scnassets */; };
 		8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B437A2218940600F01C04 /* ARViewController.swift */; };
+		D2B4251A00622C48B759A8E6 /* libPods-BubblePop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F631B611729EFDB5C56AC0D /* libPods-BubblePop.a */; };
 		EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB3639422186F2F00645F69 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,10 @@
 		100D4DB21E64CA2800486D7C /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		100D4DB31E64CA2800486D7C /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.debug.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.debug.xcconfig"; sourceTree = "<group>"; };
+		3F631B611729EFDB5C56AC0D /* libPods-BubblePop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BubblePop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429358A8D191600C24A8631B /* libPods-CardSlider.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CardSlider.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A9A8C49DD611979A6E7459A /* Pods-BubblePop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubblePop.release.xcconfig"; path = "Target Support Files/Pods-BubblePop/Pods-BubblePop.release.xcconfig"; sourceTree = "<group>"; };
+		72C033384B297691E4ED9F20 /* Pods-BubblePop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BubblePop.debug.xcconfig"; path = "Target Support Files/Pods-BubblePop/Pods-BubblePop.debug.xcconfig"; sourceTree = "<group>"; };
 		8D5B4357221890DA00F01C04 /* main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = main.storyboard; sourceTree = "<group>"; };
 		8D5B4378221892CE00F01C04 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		8D5B437A2218940600F01C04 /* ARViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewController.swift; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50945948E61E1C93388EF8DF /* libPods-CardSlider.a in Frameworks */,
+				D2B4251A00622C48B759A8E6 /* libPods-BubblePop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				429358A8D191600C24A8631B /* libPods-CardSlider.a */,
+				3F631B611729EFDB5C56AC0D /* libPods-BubblePop.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,6 +108,8 @@
 			children = (
 				332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */,
 				D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */,
+				72C033384B297691E4ED9F20 /* Pods-BubblePop.debug.xcconfig */,
+				4A9A8C49DD611979A6E7459A /* Pods-BubblePop.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -117,6 +125,7 @@
 				100D4D941E64C99D00486D7C /* Sources */,
 				100D4D951E64C99D00486D7C /* Frameworks */,
 				100D4D961E64C99D00486D7C /* Resources */,
+				13C1D9F5DC9EAB0DA821CA72 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -179,6 +188,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		13C1D9F5DC9EAB0DA821CA72 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BubblePop/Pods-BubblePop-frameworks.sh",
+				"${PODS_ROOT}/TwilioVoice/TwilioVoice.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwilioVoice.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BubblePop/Pods-BubblePop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		45F5FCFEFC4C1F839278A527 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,7 +221,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CardSlider-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-BubblePop-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -338,7 +369,7 @@
 		};
 		100D4DAB1E64C99D00486D7C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 332DD14DC528BF15680055E3 /* Pods-CardSlider.debug.xcconfig */;
+			baseConfigurationReference = 72C033384B297691E4ED9F20 /* Pods-BubblePop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;
@@ -355,7 +386,7 @@
 		};
 		100D4DAC1E64C99D00486D7C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */;
+			baseConfigurationReference = 4A9A8C49DD611979A6E7459A /* Pods-BubblePop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CLANG_ENABLE_MODULES = YES;

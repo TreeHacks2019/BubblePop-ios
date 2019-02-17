@@ -59,11 +59,13 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - TwilioVoice (2.0.7)
 
 DEPENDENCIES:
   - Firebase
   - Firebase/Core
   - Firebase/Database
+  - TwilioVoice (~> 2.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -77,6 +79,7 @@ SPEC REPOS:
     - GoogleUtilities
     - leveldb-library
     - nanopb
+    - TwilioVoice
 
 SPEC CHECKSUMS:
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -89,7 +92,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  TwilioVoice: c0eacff80ee4d9b1e5f8c789ce8c5747c09e6140
 
-PODFILE CHECKSUM: f1e777f1365c5c15634612c7c77c2c22f97476c1
+PODFILE CHECKSUM: d350bda2a472217fd1771ea44dea8ce26226c41e
 
 COCOAPODS: 1.6.0
