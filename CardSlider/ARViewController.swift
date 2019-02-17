@@ -24,6 +24,28 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     var username = "Will"
     var timer: Timer!
     
+    func getVector(lat0: Double, long0: Double, lat1: Double, long1: Double, compass_angle: Double) -> (Double, Double, Double) {
+        let dLon = long1 - long0
+        let y = sin(dLon) * cos(lat1)
+        let x = cos(lat0)*sin(lat1) - sin(lat0)*cos(lat1)*cos(dLon)
+        let bearing = atan2(y, x)
+        let distance = sqrt(x*x + y*y)
+        
+        //let compass_angle = 0.0 // heading clockwise from true north
+        if (x <= 0){
+            // east of north
+            let rotation = -compass_angle
+            let xp = cos(rotation)*x + sin(rotation)*y
+            let yp = -sin(rotation)*x + cos(rotation)*y
+            return (xp, 0, -yp)
+        }
+        let rotation = compass_angle
+        let xp = cos(rotation)*x + sin(rotation)*y
+        let yp = -sin(rotation)*x + cos(rotation)*y
+        return (xp, 0, -yp)
+        //return (, -distance)
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -50,7 +72,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/Lowpoly_tree_sample.dae")!
         self.treeNode = scene.rootNode.childNode(withName: "Tree_lp_11", recursively: true)
-        self.treeNode?.position = SCNVector3Make(0, 0, -1)
+        //self.treeNode?.position = SCNVector3Make(0, 0, -1)
         
         // Set the scene to the view
         sceneView.scene = scene
@@ -98,6 +120,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         
     }
     
+    func degreesToRadians(degrees: Double) -> Double {
+        return degrees * Double.pi / 180.0
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
@@ -108,6 +134,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
             ref.child("profile").child(username).child("lat").setValue(lat);
             ref.child("profile").child(username).child("lng").setValue(long);
             
+            // add this
+            let vec3 = self.getVector(lat0: self.degreesToRadians(degrees: lat), long0: self.degreesToRadians(degrees: long), lat1: self.degreesToRadians(degrees: target_lat), long1: self.degreesToRadians(degrees: target_long), compass_angle: 0.0)
+            self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
+            print("set position: ", self.treeNode?.position)
         }
     }
     
