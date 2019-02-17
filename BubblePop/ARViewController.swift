@@ -104,6 +104,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
 //
 //        // Show statistics such as fps and timing information
 //        sceneView.showsStatistics = true
+        sceneLocationView.showsStatistics = true
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/Lowpoly_tree_sample")!
@@ -121,18 +122,18 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         
         // TODO maybe activate only when user is close enough
         let button = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 100, width: 100, height: 50))
-        button.backgroundColor = .black
+        button.backgroundColor = .blue
         button.setTitle("Found!", for: .normal)
         button.addTarget(self, action: #selector(foundPerson), for: .touchUpInside)
         button.layer.cornerRadius = 10
-        self.view.addSubview(button)
+        sceneLocationView.addSubview(button)
         
         let callButton = UIButton(frame: CGRect(x: self.view.frame.width / 2 - 50, y: self.view.frame.height / 2 + 200, width: 100, height: 50))
-        callButton.backgroundColor = .black
-        callButton.setTitle("Call", for: .normal)
+        callButton.backgroundColor = .green
+        callButton.setTitle("📞 Call", for: .normal)
         callButton.addTarget(self, action: #selector(placeCall), for: .touchUpInside)
         callButton.layer.cornerRadius = 10
-        self.view.addSubview(callButton)
+        sceneLocationView.addSubview(callButton)
         
 //        toggleUIState(isEnabled: true, showCallControl: false)
 //        outgoingValue.delegate = self
