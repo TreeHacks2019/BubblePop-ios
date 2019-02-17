@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import Firebase
 import CoreLocation
 
 class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDelegate {
@@ -18,9 +19,20 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     let locationManager = CLLocationManager()
     var lat: Double = 0.0
     var long : Double = 0.0
+    var username = "Will"
+    var timer: Timer!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        let id = UIDevice.current.identifierForVendor!.uuidString
+        let ref = Database.database().reference()
+        ref.child(id).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.username = snapshot.value as? String ?? ""
+        }) { (error) in
+            print(error.localizedDescription)
+        }
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -41,6 +53,10 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         // Set the scene to the view
         sceneView.scene = scene
         
+        // Create timer
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { [weak self] (_) in
+            self?.timerHasBeenCalled()
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +64,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        
+        configuration.planeDetection = [.horizontal]
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -67,6 +83,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
+        
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
@@ -82,16 +99,45 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[locations.count - 1]
         if location.horizontalAccuracy > 0 {
-            self.locationManager.stopUpdatingLocation()
             print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
             long = location.coordinate.longitude
             lat = location.coordinate.latitude
+            let ref = Database.database().reference()
+            ref.child("profile").child(username).child("lat").setValue(lat);
+            ref.child("profile").child(username).child("lng").setValue(long);
+            
         }
     }
     
     //Write the didFailWithError method here:
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+    
+    func timerHasBeenCalled() {
+        // update this
+        var target = "Jennie"
+        var target_lat = 0.0
+        var target_lng = 0.0
+        if (username == "Jennie") {target = "Will"}
+        
+        let ref = Database.database().reference()
+        ref.child("profile").child(target).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? [String : AnyObject] ?? [:]
+            if (value["lat"] != nil) {
+                target_lat = value["lat"] as! Double
+            }
+            if (value["lng"] != nil) {
+                target_lng = value["lng"] as! Double
+            }
+            print(target_lat,target_lng, "gotten")
+            // update
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        
+        
     }
     
 }

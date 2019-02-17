@@ -29,7 +29,10 @@ class ViewController: UIViewController {
     }
     
     func loadCards(){
-        print(username)
+        let id = UIDevice.current.identifierForVendor!.uuidString
+        ref = Database.database().reference()
+        ref.child(id).setValue(["username":username]);
+        
         for view in view.subviews {
             view.removeFromSuperview()
         }
