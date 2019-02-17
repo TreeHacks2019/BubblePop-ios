@@ -18,8 +18,7 @@ class ViewController: UIViewController {
     var total_Cards = 4
     var cardEmojis = Array(repeating: 0, count: 4)
     var ref: DatabaseReference!
-    var username = "anon"
-    
+    var username = "Jennie"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,7 +114,7 @@ class ViewController: UIViewController {
                 self.view.addSubview(foundLabel)
                 self.view.backgroundColor = UIColor(red: 180/255, green: 120/255, blue: 180/255, alpha: 1.0)
                 //
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
                     self.performSegue(withIdentifier: "firstSegue", sender: self)
                 })
             } else {

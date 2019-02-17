@@ -80,7 +80,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         sceneView.scene = scene
         
         // Create timer
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { [weak self] (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { [weak self] (_) in
             self?.timerHasBeenCalled()
         })
     }
