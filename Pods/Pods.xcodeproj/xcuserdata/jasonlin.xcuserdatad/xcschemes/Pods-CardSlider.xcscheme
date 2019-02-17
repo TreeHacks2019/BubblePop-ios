@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9E95E76764A5BB8C94CBD38484B698BB"
+               BlueprintIdentifier = "03BEB59B2102906D0B6B3DBD97E7D2E5"
                BlueprintName = "Pods-CardSlider"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libPods-CardSlider.a">

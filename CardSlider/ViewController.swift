@@ -8,8 +8,7 @@
 
 import UIKit
 import Firebase
-//import CreateML
-//import NaturalLanguage
+import NaturalLanguage
 import EtherKit
 
 class ViewController: UIViewController {
@@ -55,39 +54,27 @@ class ViewController: UIViewController {
         
         let walletStorage = KeychainStorageStrategy(identifier: "cz.ackee.etherkit.example")
         
-        HDKey.Private.create(
-            with: MnemonicStorageStrategy(walletStorage),
-            mnemonic: sentence,
-            network: .main,
-            path: [
-                KeyPathNode(at: 44, hardened: true),
-                KeyPathNode(at: 60, hardened: true),
-                KeyPathNode(at: 0, hardened: true),
-                KeyPathNode(at: 0),
-                ]
-        ) { [weak self] _ in
-            self?.testContract()
-        }
+//        HDKey.Private.create(
+//            with: MnemonicStorageStrategy(walletStorage),
+//            mnemonic: sentence,
+//            network: .main,
+//            path: [
+//                KeyPathNode(at: 44, hardened: true),
+//                KeyPathNode(at: 60, hardened: true),
+//                KeyPathNode(at: 0, hardened: true),
+//                KeyPathNode(at: 0),
+//                ]
+//        ) { [weak self] _ in
+//            self?.testContract()
+//        }
     }
     
     func classifier() {
-        let data = try MLDataTable(contentsOf: URL(fileURLWithPath: "data.json"))
-        let (trainingData, testingData) = data.randomSplit(by: 0.8, seed: 5)
-        
-        let sentimentClassifier = try MLTextClassifier(trainingData: trainingData,
-                                                       textColumn: "text",
-                                                       labelColumn: "sentiment")
-        let trainingAccuracy = (1.0 - sentimentClassifier.trainingMetrics.classificationError) * 100
-        let validationAccuracy = (1.0 - sentimentClassifier.validationMetrics.classificationError) * 100
-        
-        let evaluationMetrics = sentimentClassifier.evaluation(on: testingData)
-        let evaluationAccuracy = (1.0 - evaluationMetrics.classificationError) * 100
-        
-        let sentimentPredictor = try NLModel(mlModel: SentimentClassifier().model)
-        sentimentPredictor.predictedLabel(for: "It was the best I've ever seen!")
+        let sentimentPredictor = try! NLModel(mlModel: SentimentClassifier().model)
+        print(sentimentPredictor.predictedLabel(for: "Trump is having a great day!"))
     }
     
-    func loadCards(){
+    @objc func loadCards(){
         let id = UIDevice.current.identifierForVendor!.uuidString
         ref = Database.database().reference()
         ref.child(id).setValue(["username":username]);
@@ -128,6 +115,8 @@ class ViewController: UIViewController {
         for view in view.subviews {
             view.removeFromSuperview()
         }
+        
+        classifier()
         
         let doneLabel = UILabel()
         doneLabel.text = "Preparing\n A Match\n..."
@@ -219,7 +208,7 @@ class ViewController: UIViewController {
         }
         
         // make sure that the first card in the deck is at the front
-        self.view.bringSubview(toFront: cards[0])
+        self.view.bringSubviewToFront(cards[0])
     }
     
     /// This is called whenever the front card is swiped off the screen or is animating away from its initial position.
@@ -257,7 +246,7 @@ class ViewController: UIViewController {
         // 2. add a new card (now the 4th card in the deck) to the very back
         if 4 > (cards.count - 1) {
             if cards.count != 1 {
-                self.view.bringSubview(toFront: cards[1])
+                self.view.bringSubviewToFront(cards[1])
             }
             if cards.count == 1 { decided() }
             return
@@ -284,7 +273,7 @@ class ViewController: UIViewController {
             
         })
         // first card needs to be in the front for proper interactivity
-        self.view.bringSubview(toFront: self.cards[1])
+        self.view.bringSubviewToFront(self.cards[1])
         
         if cards.count == 1 { decided() }
     }
@@ -301,7 +290,7 @@ class ViewController: UIViewController {
     var cardAttachmentBehavior: UIAttachmentBehavior!
     
     /// This method handles the swiping gesture on each card and shows the appropriate emoji based on the card's center.
-    func handleCardPan(sender: UIPanGestureRecognizer) {
+    @objc func handleCardPan(sender: UIPanGestureRecognizer) {
         // if we're in the process of hiding a card, don't let the user interace with the cards yet
         if cardIsHiding { return }
         // change this to your discretion - it represents how far the user must pan up or down to change the option
@@ -314,7 +303,7 @@ class ViewController: UIViewController {
         switch sender.state {
         case .began:
             dynamicAnimator.removeAllBehaviors()
-            let offset = UIOffsetMake(panLocationInCard.x - cards[0].bounds.midX, panLocationInCard.y - cards[0].bounds.midY);
+            let offset = UIOffset(horizontal: panLocationInCard.x - cards[0].bounds.midX, vertical: panLocationInCard.y - cards[0].bounds.midY);
             // card is attached to center
             cardAttachmentBehavior = UIAttachmentBehavior(item: cards[0], offsetFromCenter: offset, attachedToAnchor: panLocationInView)
             dynamicAnimator.addBehavior(cardAttachmentBehavior)
@@ -470,7 +459,7 @@ extension ViewController {
         }
     }
     
-    func changeUserName(textField: UITextField){
+    @objc func changeUserName(textField: UITextField){
         username = textField.text!
     }
 

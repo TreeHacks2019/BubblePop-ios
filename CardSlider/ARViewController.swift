@@ -54,7 +54,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         return (xp, yp, 0)
     }
     
-    func foundPerson(_ sender: Any) {
+    @objc func foundPerson(_ sender: Any) {
         // interact with second segue
         performSegue(withIdentifier: "SecondSegue", sender: sender)
     }

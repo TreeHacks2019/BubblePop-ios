@@ -21,6 +21,7 @@
 		8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5B437A2218940600F01C04 /* ARViewController.swift */; };
 		CB8DCF850ADC0461FB0EDD80 /* SharedContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0552100A15F26C7D2AF7EB2 /* SharedContract.swift */; };
 		EAB3639522186F2F00645F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EAB3639422186F2F00645F69 /* GoogleService-Info.plist */; };
+		EAC698492219780300D214AB /* SentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = EAC698482219780300D214AB /* SentimentClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		D997F94105C59C2903B24AFE /* Pods-CardSlider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CardSlider.release.xcconfig"; path = "Target Support Files/Pods-CardSlider/Pods-CardSlider.release.xcconfig"; sourceTree = "<group>"; };
 		E0552100A15F26C7D2AF7EB2 /* SharedContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SharedContract.swift; path = GeneraredContracts/SharedContract.swift; sourceTree = "<group>"; };
 		EAB3639422186F2F00645F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EAC698482219780300D214AB /* SentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = SentimentClassifier.mlmodel; path = ../../SentimentClassifier.mlmodel; sourceTree = "<group>"; };
 		FA6F86F18407D10A02EE2DC6 /* HelloContract.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HelloContract.swift; path = GeneraredContracts/HelloContract.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 		100D4D9A1E64C99D00486D7C /* CardSlider */ = {
 			isa = PBXGroup;
 			children = (
+				EAC698482219780300D214AB /* SentimentClassifier.mlmodel */,
 				EAB3639422186F2F00645F69 /* GoogleService-Info.plist */,
 				100D4DAF1E64CA2800486D7C /* AppDelegate.swift */,
 				100D4DB31E64CA2800486D7C /* ViewController.swift */,
@@ -241,6 +244,7 @@
 			files = (
 				100D4DB81E64CA2800486D7C /* ViewController.swift in Sources */,
 				100D4DB51E64CA2800486D7C /* CardView.swift in Sources */,
+				EAC698492219780300D214AB /* SentimentClassifier.mlmodel in Sources */,
 				100D4DB41E64CA2800486D7C /* AppDelegate.swift in Sources */,
 				8D5B437B2218940600F01C04 /* ARViewController.swift in Sources */,
 				100D4DB61E64CA2800486D7C /* EmojiOptionsOverlay.swift in Sources */,
@@ -381,12 +385,12 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 7X43M2UT9A;
 				INFOPLIST_FILE = CardSlider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -398,11 +402,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 7X43M2UT9A;
 				INFOPLIST_FILE = CardSlider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = saoudrizwan.CardSlider;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
