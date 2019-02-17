@@ -26,27 +26,25 @@ let twimlParamTo = "to"
 class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDelegate, PKPushRegistryDelegate, TVONotificationDelegate, TVOCallDelegate, CXProviderDelegate, UITextFieldDelegate {
     
     @IBOutlet var sceneView: ARSCNView!
-    
+    var modelNode:SCNNode!
 //    @IBOutlet weak var placeCallButton: UIButton!
 //    @IBOutlet weak var iconView: UIImageView!
 //    @IBOutlet weak var outgoingValue: UITextField!
-    var outgoingValue: String = "8312275301"
+    var outgoingValue: String = "2135870447"
 //    @IBOutlet weak var callControlView: UIView!
 //    @IBOutlet weak var muteSwitch: UISwitch!
 //    @IBOutlet weak var speakerSwitch: UISwitch!
     
     var treeNode: SCNNode?
     let locationManager = CLLocationManager()
-    var lat: Double = 0.0
-    var long : Double = 0.0
-    var target_lat: Double = 0.0
-    var target_long: Double = 0.0
+    var userLocation = CLLocation()
+    var location = CLLocation()
     var username = "Will"
     var timer: Timer!
-    var directionDegrees : Double = 0.0
     var debugLabel : UILabel = UILabel()
-    
+    var distance : Double = 0.0
     var deviceTokenString: String?
+    var heading: Double = 0.0
     
     var voipRegistry: PKPushRegistry
     var incomingPushCompletionCallback: (()->Swift.Void?)? = nil
@@ -62,34 +60,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     let callKitCallController: CXCallController
     var userInitiatedDisconnect: Bool = false
     
-    func getVector(lat0: Double, long0: Double, lat1: Double, long1: Double, compass_angle: Double) -> (Double, Double, Double) {
-        let lat0r = self.degreesToRadians(degrees: lat0)
-        let lat1r = self.degreesToRadians(degrees: lat1)
-        let long0r = self.degreesToRadians(degrees: long0)
-        let long1r = self.degreesToRadians(degrees: long1)
-        let distance = CLLocation(latitude: lat0, longitude: long0).distance(from: CLLocation(latitude: lat1, longitude: long1))
-        
-        let dLon = long1r - long0r
-        let y = sin(dLon) * cos(lat1r) * distance
-        let x = (cos(lat0r)*sin(lat1r) - sin(lat0r)*cos(lat1r)*cos(dLon)) * distance
-//        print("distance",distance)
-//        print(y,x,(y*y+x*x).squareRoot(),"alternative distance")
-        let bearing = atan2(y, x)
-        
-        //let compass_angle = 0.0 // heading clockwise from true north
-        if (x <= 0){
-            // east of north
-            let rotation = -compass_angle
-            let xp = cos(rotation)*x + sin(rotation)*y
-            let yp = -sin(rotation)*x + cos(rotation)*y
-            return (xp, yp, 0)
-        }
-        let rotation = compass_angle
-        let xp = cos(rotation)*x + sin(rotation)*y
-        let yp = -sin(rotation)*x + cos(rotation)*y
-        return (xp, yp, 0)
-    }
-    
+  
     func foundPerson(_ sender: Any) {
         // interact with second segue
         performSegue(withIdentifier: "SecondSegue", sender: sender)
@@ -117,7 +88,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         }
         
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         locationManager.startUpdatingHeading()
@@ -130,7 +101,7 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/Lowpoly_tree_sample")!
-        self.treeNode = scene.rootNode.childNode(withName: "Tree_lp_11", recursively: true)
+        self.modelNode = scene.rootNode.childNode(withName: "Tree_lp_11", recursively: true)
         //self.treeNode?.rotation = vector4(x:0,y:90,z:0,w:0)
         //self.treeNode?.position = SCNVector3Make(0, 0, -1)
         
@@ -198,34 +169,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations[locations.count - 1]
-        if location.horizontalAccuracy > 0 {
-            print("longitude = \(location.coordinate.longitude), latitude = \(location.coordinate.latitude)")
-            long = location.coordinate.longitude
-            lat = location.coordinate.latitude
-            let ref = Database.database().reference()
-            ref.child("profile").child(username).child("lat").setValue(lat);
-            ref.child("profile").child(username).child("lng").setValue(long);
-            
-            // add this
-            let vec3 = self.getVector(lat0: lat, long0: long, lat1: target_lat, long1: target_long, compass_angle: directionDegrees)
-            self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
-            let res = "set position: " + String(describing: self.treeNode?.position)
-            
+        let userLocation = locations[locations.count - 1]
+        if userLocation.horizontalAccuracy > 0 {
+            print("longitude = \(userLocation.coordinate.longitude), latitude = \(userLocation.coordinate.latitude)")
+            self.userLocation = userLocation
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        print(newHeading.trueHeading)
-        directionDegrees = newHeading.trueHeading
-        let vec3 = self.getVector(lat0: lat, long0: long, lat1: target_lat, long1: target_long, compass_angle: directionDegrees)
-        self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
-        
-    }
-    
-    //Write the didFailWithError method here:
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        heading = newHeading.trueHeading
     }
     
     func timerHasBeenCalled() {
@@ -236,25 +188,15 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         let ref = Database.database().reference()
         ref.child("profile").child(target).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? [String : AnyObject] ?? [:]
-            if (value["lat"] != nil) {
-                self.target_lat = value["lat"] as! Double
+            if (value["lat"] != nil && value["lng"] != nil) {
+                self.location = CLLocation(latitude: value["lat"] as! Double, longitude: value["lng"] as! Double)
+                self.updateLocation(self.location.coordinate.latitude, self.location.coordinate.longitude)
             }
-            if (value["lng"] != nil) {
-                self.target_long = value["lng"] as! Double
-            }
-            print( self.target_lat, self.target_long, "gotten")
-            // update
-            
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        // add this
-        
-        let vec3 = self.getVector(lat0: lat, long0: long, lat1: target_lat, long1: target_long, compass_angle: directionDegrees)
-        self.treeNode?.position = SCNVector3Make(Float(vec3.0), 0, Float(-vec3.1))
-        let res = "set position: " + String(describing: self.treeNode?.position)
-        print(res)
+        ref.child("profile").child(username).child("lat").setValue(self.userLocation.coordinate.latitude);
+        ref.child("profile").child(username).child("lng").setValue(self.userLocation.coordinate.longitude);
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -747,6 +689,101 @@ class ARViewController: UIViewController, ARSCNViewDelegate, CLLocationManagerDe
         self.callInvite = nil
         self.callKitCompletionCallback = completionHandler
         self.incomingPushHandled()
+    }
+    
+    //MARK: - CLLocationManager
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func updateLocation(_ latitude : Double, _ longitude : Double) {
+        let location = CLLocation(latitude: latitude, longitude: longitude)
+        self.distance = Double(location.distance(from: self.userLocation))
+    }
+    
+    func positionModel(_ location: CLLocation) {
+        // Translate node
+        self.modelNode.position = translateNode(location)
+        
+        // Scale node
+        self.modelNode.scale = scaleNode(location)
+    }
+    
+    func rotateNode(_ angleInRadians: Float, _ transform: SCNMatrix4) -> SCNMatrix4 {
+        let rotation = SCNMatrix4MakeRotation(angleInRadians, 0, 1, 0)
+        return SCNMatrix4Mult(transform, rotation)
+    }
+    
+    func translateNode (_ location: CLLocation) -> SCNVector3 {
+        let locationTransform = transformMatrix(matrix_identity_float4x4, userLocation, location)
+        return positionFromTransform(locationTransform)
+    }
+    
+    func scaleNode (_ location: CLLocation) -> SCNVector3 {
+        let scale = max( min( Float(1000/distance), 1.5 ), 3 )
+        return SCNVector3(x: scale, y: scale, z: scale)
+    }
+    
+    func positionFromTransform(_ transform: simd_float4x4) -> SCNVector3 {
+        return SCNVector3Make(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+    }
+    
+    func transformMatrix(_ matrix: simd_float4x4, _ originLocation: CLLocation, _ driverLocation: CLLocation) -> simd_float4x4 {
+        let bearing = bearingBetweenLocations(userLocation, driverLocation)
+        let rotationMatrix = rotateAroundY(matrix_identity_float4x4, Float(bearing))
+        
+        let position = float4(0.0, 0.0, Float(-distance), 0.0)
+        let translationMatrix = getTranslationMatrix(matrix_identity_float4x4, position)
+        
+        let transformMatrix = simd_mul(rotationMatrix, translationMatrix)
+        
+        return simd_mul(matrix, transformMatrix)
+    }
+    
+    func getTranslationMatrix(_ matrix: simd_float4x4, _ translation : vector_float4) -> simd_float4x4 {
+        var matrix = matrix
+        matrix.columns.3 = translation
+        return matrix
+    }
+    
+    func rotateAroundY(_ matrix: simd_float4x4, _ degrees: Float) -> simd_float4x4 {
+        var matrix = matrix
+        
+        matrix.columns.0.x = cos(degrees)
+        matrix.columns.0.z = -sin(degrees)
+        
+        matrix.columns.2.x = sin(degrees)
+        matrix.columns.2.z = cos(degrees)
+        return matrix.inverse
+    }
+    
+    func bearingBetweenLocations(_ originLocation: CLLocation, _ driverLocation: CLLocation) -> Double {
+        let lat1 = self.degreesToRadians(degrees: originLocation.coordinate.latitude)
+        let lon1 = self.degreesToRadians(degrees: originLocation.coordinate.longitude)
+        
+        let lat2 = self.degreesToRadians(degrees: location.coordinate.latitude)
+        let lon2 = self.degreesToRadians(degrees: location.coordinate.longitude)
+        
+        let longitudeDiff = lon2 - lon1
+        
+        let y = sin(longitudeDiff) * cos(lat2);
+        let x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(longitudeDiff);
+        
+        return atan2(y, x)
+    }
+    
+    func makeBillboardNode(_ image: UIImage) -> SCNNode {
+        let plane = SCNPlane(width: 10, height: 10)
+        plane.firstMaterial!.diffuse.contents = image
+        let node = SCNNode(geometry: plane)
+        node.constraints = [SCNBillboardConstraint()]
+        return node
     }
     
 }
