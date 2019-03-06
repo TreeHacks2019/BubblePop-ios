@@ -42,6 +42,12 @@ Half the things stated above.
 
 How iOS works, how iOS doesn’t work, and how iOS sometimes works. 
 
+## Check it out
+- [https://devpost.com/software/bubblepop](https://devpost.com/software/bubblepop)
+- [https://github.com/TreeHacks2019/BubblePop-ios](https://github.com/TreeHacks2019/BubblePop-ios)
+- [https://github.com/TreeHacks2019/BubblePop-backend](https://github.com/TreeHacks2019/BubblePop-backend)
+- [https://github.com/TreeHacks2019/BubblePop-dashboard](https://github.com/TreeHacks2019/BubblePop-dashboard)
+
 ## Contributors
 - [jaxball](https://github.com/jaxball)
 - [jenniezheng](https://github.com/jenniezheng)
